@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		196EA0402C4D2DF700DD25DC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 196EA03F2C4D2DF700DD25DC /* FirebaseAuth */; };
+		196EA0422C4D2EC500DD25DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 196EA0412C4D2EC500DD25DC /* GoogleService-Info.plist */; };
+		196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0442C4D2F8100DD25DC /* SignUpView.swift */; };
+		196EA0472C4D2F8700DD25DC /* SignUpFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */; };
 		EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26537F2C48987C003B89D4 /* gifscribeItApp.swift */; };
 		EB2653842C48987E003B89D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB2653832C48987E003B89D4 /* Assets.xcassets */; };
 		EB2653872C48987E003B89D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB2653862C48987E003B89D4 /* Preview Assets.xcassets */; };
@@ -20,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		196EA0412C4D2EC500DD25DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		196EA0442C4D2F8100DD25DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFeature.swift; sourceTree = "<group>"; };
 		EB26537C2C48987C003B89D4 /* gifscribeIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gifscribeIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB26537F2C48987C003B89D4 /* gifscribeItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gifscribeItApp.swift; sourceTree = "<group>"; };
 		EB2653832C48987E003B89D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,12 +45,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB26538F2C489C45003B89D4 /* ComposableArchitecture in Frameworks */,
+				196EA0402C4D2DF700DD25DC /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		196EA0432C4D2F7200DD25DC /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				196EA0442C4D2F8100DD25DC /* SignUpView.swift */,
+				196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		EB2653732C48987C003B89D4 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				EB26539D2C48E330003B89D4 /* SignIn */,
+				196EA0432C4D2F7200DD25DC /* SignUp */,
 				EB26539E2C48E3B2003B89D4 /* Main */,
 			);
 			path = Presentation;
@@ -139,6 +157,7 @@
 		EB26539B2C48B4E5003B89D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				196EA0412C4D2EC500DD25DC /* GoogleService-Info.plist */,
 				EB2653832C48987E003B89D4 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -190,6 +209,7 @@
 			name = gifscribeIt;
 			packageProductDependencies = (
 				EB26538E2C489C45003B89D4 /* ComposableArchitecture */,
+				196EA03F2C4D2DF700DD25DC /* FirebaseAuth */,
 			);
 			productName = gifscribeIt;
 			productReference = EB26537C2C48987C003B89D4 /* gifscribeIt.app */;
@@ -221,6 +241,7 @@
 			mainGroup = EB2653732C48987C003B89D4;
 			packageReferences = (
 				EB26538D2C489C45003B89D4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				196EA03E2C4D2DF700DD25DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = EB26537D2C48987C003B89D4 /* Products */;
 			projectDirPath = "";
@@ -238,6 +259,7 @@
 			files = (
 				EB2653872C48987E003B89D4 /* Preview Assets.xcassets in Resources */,
 				EB2653842C48987E003B89D4 /* Assets.xcassets in Resources */,
+				196EA0422C4D2EC500DD25DC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,10 +270,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				196EA0472C4D2F8700DD25DC /* SignUpFeature.swift in Sources */,
 				EB26539A2C48B4DC003B89D4 /* RootFeature.swift in Sources */,
 				EB2653A42C48E499003B89D4 /* MainView.swift in Sources */,
 				EB2653A62C48E4A1003B89D4 /* MainFeature.swift in Sources */,
 				EB2653A22C48E3D5003B89D4 /* SignInFeature.swift in Sources */,
+				196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */,
 				EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */,
 				EB2653A02C48E3C7003B89D4 /* SignInView.swift in Sources */,
 				EB2653922C48AAAF003B89D4 /* RootView.swift in Sources */,
@@ -474,6 +498,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		196EA03E2C4D2DF700DD25DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.29.0;
+			};
+		};
 		EB26538D2C489C45003B89D4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -485,6 +517,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		196EA03F2C4D2DF700DD25DC /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 196EA03E2C4D2DF700DD25DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		EB26538E2C489C45003B89D4 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EB26538D2C489C45003B89D4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;

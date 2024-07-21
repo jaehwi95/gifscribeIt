@@ -9,15 +9,49 @@ import Foundation
 import SwiftUI
 import ComposableArchitecture
 
+@ViewAction(for: SignInFeature.self)
 struct SignInView: View {
-    let store: StoreOf<SignInFeature>
+    @Bindable var store: StoreOf<SignInFeature>
     
     var body: some View {
-        VStack {
-            Text("Sign In View")
-            Button("Navigate To Main") {
-                store.send(.navigateToMain)
+        VStack(spacing: 20) {
+            Text("Sign In")
+            TextField("Email", text: $store.email)
+                .textFieldStyle(.roundedBorder)
+                .padding()
+            TextField("Password", text: $store.password)
+                .textFieldStyle(.roundedBorder)
+                .padding()
+            VStack(spacing: 40) {
+                Button(action: {
+                    send(.loginButtonTapped)
+                }, label: {
+                    Text("Login")
+                        .padding(.vertical, 16)
+                        .padding(.horizontal, 40)
+                        .background(.blue)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                })
+                Button(
+                    action: {
+                        send(.forgotIDPasswordTapped)
+                    }, label: {
+                        Text("Forgot ID / Password?")
+                    }
+                )
+                HStack(spacing: 0) {
+                    Text("Don't have an account?")
+                    Button(action: {
+                        send(.createAccountTapped)
+                    }, label: {
+                        Text("Create Account")
+                            .padding(.horizontal, 4)
+                    })
+                }
             }
         }
+        .alert($store.scope(state: \.alert, action: \.alert))
+        .padding(.horizontal, 20)
     }
 }

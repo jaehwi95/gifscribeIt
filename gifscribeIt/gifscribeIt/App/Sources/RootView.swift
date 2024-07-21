@@ -27,6 +27,10 @@ public struct RootView: View {
             NavigationStack {
                 MainView(store: store)
             }
+        case let .signUp(store):
+            NavigationStack {
+                SignUpView(store: store)
+            }
         }
     }
 }
