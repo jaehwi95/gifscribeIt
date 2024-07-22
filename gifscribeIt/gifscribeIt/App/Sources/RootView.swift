@@ -8,28 +8,18 @@
 import SwiftUI
 import ComposableArchitecture
 
-public struct RootView: View {
-    let store: StoreOf<RootFeature>
+struct RootView: View {
+    @Bindable var store: StoreOf<RootFeature>
     
-    public init(store: StoreOf<RootFeature>) {
-        self.store = store
-    }
-    
-    @State var isSignedIn: Bool = false
-    
-    public var body: some View {
-        switch store.case {
-        case let .signIn(store):
-            NavigationStack {
+    var body: some View {
+        switch store.state {
+        case .signIn:
+            if let store = store.scope(state: \.signIn, action: \.signIn) {
                 SignInView(store: store)
             }
-        case let .main(store):
-            NavigationStack {
+        case .main:
+            if let store = store.scope(state: \.main, action: \.main) {
                 MainView(store: store)
-            }
-        case let .signUp(store):
-            NavigationStack {
-                SignUpView(store: store)
             }
         }
     }

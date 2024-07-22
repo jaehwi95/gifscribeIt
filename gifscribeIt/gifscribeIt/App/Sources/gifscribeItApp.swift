@@ -22,8 +22,10 @@ struct gifscribeItApp: App {
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    let store = Store(initialState: RootFeature.State.signIn(.init())) {
-        RootFeature.body._printChanges()
+    let store = Store(
+        initialState: RootFeature.State()
+    ) {
+        RootFeature()._printChanges()
     }
     
     var body: some Scene {

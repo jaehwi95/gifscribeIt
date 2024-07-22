@@ -10,30 +10,30 @@ import ComposableArchitecture
 import FirebaseAuth
 
 @Reducer
-public struct SignUpFeature {
+struct SignUpFeature {
     @ObservableState
-    public struct State: Equatable {
+    struct State: Equatable {
         @Presents var alert: AlertState<Action.Alert>?
         var email: String = ""
         var password: String = ""
         var confirmPassword: String = ""
     }
     
-    public enum Action: Sendable, ViewAction {
+    enum Action: Sendable, ViewAction, Equatable {
         case alert(PresentationAction<Alert>)
         case view(View)
         case signUp
         
-        public enum Alert: Equatable, Sendable {}
+        enum Alert: Equatable, Sendable {}
         
         @CasePathable
-        public enum View: BindableAction, Sendable {
+        enum View: BindableAction, Sendable, Equatable {
             case binding(BindingAction<State>)
             case signUpButtonTapped
         }
     }
     
-    public var body: some ReducerOf<Self> {
+    var body: some ReducerOf<Self> {
         BindingReducer(action: \.view)
         Reduce { state, action in
             switch action {

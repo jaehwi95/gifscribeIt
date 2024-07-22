@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		196EA0402C4D2DF700DD25DC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 196EA03F2C4D2DF700DD25DC /* FirebaseAuth */; };
-		196EA0422C4D2EC500DD25DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 196EA0412C4D2EC500DD25DC /* GoogleService-Info.plist */; };
 		196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0442C4D2F8100DD25DC /* SignUpView.swift */; };
 		196EA0472C4D2F8700DD25DC /* SignUpFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */; };
 		EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26537F2C48987C003B89D4 /* gifscribeItApp.swift */; };
@@ -21,10 +20,13 @@
 		EB2653A22C48E3D5003B89D4 /* SignInFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653A12C48E3D5003B89D4 /* SignInFeature.swift */; };
 		EB2653A42C48E499003B89D4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653A32C48E499003B89D4 /* MainView.swift */; };
 		EB2653A62C48E4A1003B89D4 /* MainFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653A52C48E4A1003B89D4 /* MainFeature.swift */; };
+		EB2653AA2C4DF96A003B89D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB2653A92C4DF96A003B89D4 /* GoogleService-Info.plist */; };
+		EB2653AD2C4E3BD6003B89D4 /* FindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653AC2C4E3BD6003B89D4 /* FindView.swift */; };
+		EB2653AF2C4E3BE6003B89D4 /* FindFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653AE2C4E3BE6003B89D4 /* FindFeature.swift */; };
+		EB2653B22C4E54AB003B89D4 /* GiphyAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653B12C4E54AB003B89D4 /* GiphyAPIProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		196EA0412C4D2EC500DD25DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		196EA0442C4D2F8100DD25DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFeature.swift; sourceTree = "<group>"; };
 		EB26537C2C48987C003B89D4 /* gifscribeIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gifscribeIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +39,10 @@
 		EB2653A12C48E3D5003B89D4 /* SignInFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFeature.swift; sourceTree = "<group>"; };
 		EB2653A32C48E499003B89D4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		EB2653A52C48E4A1003B89D4 /* MainFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeature.swift; sourceTree = "<group>"; };
+		EB2653A92C4DF96A003B89D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EB2653AC2C4E3BD6003B89D4 /* FindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindView.swift; sourceTree = "<group>"; };
+		EB2653AE2C4E3BE6003B89D4 /* FindFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFeature.swift; sourceTree = "<group>"; };
+		EB2653B12C4E54AB003B89D4 /* GiphyAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyAPIProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				EB2653902C48AA87003B89D4 /* App */,
-				EB2653942C48ADB2003B89D4 /* Data */,
 				EB2653932C48ADAE003B89D4 /* Domain */,
 				EB2653952C48ADB6003B89D4 /* Presentation */,
 				EB2653962C48ADE2003B89D4 /* Core */,
@@ -112,15 +117,9 @@
 		EB2653932C48ADAE003B89D4 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EB2653B02C4E5408003B89D4 /* Giphy */,
 			);
 			path = Domain;
-			sourceTree = "<group>";
-		};
-		EB2653942C48ADB2003B89D4 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		EB2653952C48ADB6003B89D4 /* Presentation */ = {
@@ -128,6 +127,7 @@
 			children = (
 				EB26539D2C48E330003B89D4 /* SignIn */,
 				196EA0432C4D2F7200DD25DC /* SignUp */,
+				EB2653AB2C4E3BAE003B89D4 /* Find */,
 				EB26539E2C48E3B2003B89D4 /* Main */,
 			);
 			path = Presentation;
@@ -157,7 +157,7 @@
 		EB26539B2C48B4E5003B89D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				196EA0412C4D2EC500DD25DC /* GoogleService-Info.plist */,
+				EB2653A92C4DF96A003B89D4 /* GoogleService-Info.plist */,
 				EB2653832C48987E003B89D4 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -189,6 +189,23 @@
 				EB2653A52C48E4A1003B89D4 /* MainFeature.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		EB2653AB2C4E3BAE003B89D4 /* Find */ = {
+			isa = PBXGroup;
+			children = (
+				EB2653AC2C4E3BD6003B89D4 /* FindView.swift */,
+				EB2653AE2C4E3BE6003B89D4 /* FindFeature.swift */,
+			);
+			path = Find;
+			sourceTree = "<group>";
+		};
+		EB2653B02C4E5408003B89D4 /* Giphy */ = {
+			isa = PBXGroup;
+			children = (
+				EB2653B12C4E54AB003B89D4 /* GiphyAPIProvider.swift */,
+			);
+			path = Giphy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +276,7 @@
 			files = (
 				EB2653872C48987E003B89D4 /* Preview Assets.xcassets in Resources */,
 				EB2653842C48987E003B89D4 /* Assets.xcassets in Resources */,
-				196EA0422C4D2EC500DD25DC /* GoogleService-Info.plist in Resources */,
+				EB2653AA2C4DF96A003B89D4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,12 +290,15 @@
 				196EA0472C4D2F8700DD25DC /* SignUpFeature.swift in Sources */,
 				EB26539A2C48B4DC003B89D4 /* RootFeature.swift in Sources */,
 				EB2653A42C48E499003B89D4 /* MainView.swift in Sources */,
+				EB2653AF2C4E3BE6003B89D4 /* FindFeature.swift in Sources */,
 				EB2653A62C48E4A1003B89D4 /* MainFeature.swift in Sources */,
 				EB2653A22C48E3D5003B89D4 /* SignInFeature.swift in Sources */,
+				EB2653AD2C4E3BD6003B89D4 /* FindView.swift in Sources */,
 				196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */,
 				EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */,
 				EB2653A02C48E3C7003B89D4 /* SignInView.swift in Sources */,
 				EB2653922C48AAAF003B89D4 /* RootView.swift in Sources */,
+				EB2653B22C4E54AB003B89D4 /* GiphyAPIProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,29 +1,28 @@
 //
-//  MainFeature.swift
+//  FindFeature.swift
 //  gifscribeIt
 //
-//  Created by Jaehwi Kim on 2024/07/18.
+//  Created by Jaehwi Kim on 2024/07/22.
 //
 
 import Foundation
 import ComposableArchitecture
 
 @Reducer
-struct MainFeature {
+struct FindFeature {
     @ObservableState
     struct State: Equatable {
         
     }
     
     enum Action: Equatable {
-        case goBack
+        
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .goBack:
-                return .none
+                
             }
         }
     }

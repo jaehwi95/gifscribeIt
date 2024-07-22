@@ -13,7 +13,33 @@ import ComposableArchitecture
 struct SignInView: View {
     @Bindable var store: StoreOf<SignInFeature>
     
+    init(store: StoreOf<SignInFeature>) {
+        self.store = store
+    }
+    
     var body: some View {
+        NavigationStack(
+            path: $store.scope(state: \.path, action: \.path),
+            root: {
+                SignInView
+            },
+            destination: { store in
+                switch store.case {
+                case .find(let store):
+                    FindView(store: store)
+                case .signUp(let store):
+                    SignUpView(store: store)
+                }
+            }
+        )
+        .onAppear {
+            store.send(.onAppear)
+        }
+    }
+}
+
+extension SignInView {
+    private var SignInView: some View {
         VStack(spacing: 20) {
             Text("Sign In")
             TextField("Email", text: $store.email)

@@ -9,26 +9,32 @@ import Foundation
 import ComposableArchitecture
 
 @Reducer
-public struct SignInFeature {
+struct SignInFeature {
     @ObservableState
-    public struct State: Equatable {
+    struct State: Equatable {
         @Presents var alert: AlertState<Action.Alert>?
+        var path = StackState<Path.State>()
         var email: String = ""
         var password: String = ""
         var loginError: LoginError = .none
     }
     
-    public enum Action: Sendable, ViewAction {
+    @Reducer(state: .equatable, action: .equatable)
+    enum Path {
+        case find(FindFeature)
+        case signUp(SignUpFeature)
+    }
+    
+    enum Action: Equatable, ViewAction {
         case alert(PresentationAction<Alert>)
+        case path(StackActionOf<Path>)
+        case onAppear
         case loginFail
         case view(View)
-        case navigateToMain
-        case navigateToSignUp
         
-        public enum Alert: Equatable, Sendable {}
+        enum Alert: Equatable {}
         
-        @CasePathable
-        public enum View: BindableAction, Sendable {
+        enum View: Equatable, BindableAction {
             case binding(BindingAction<State>)
             case loginButtonTapped
             case forgotIDPasswordTapped
@@ -36,46 +42,55 @@ public struct SignInFeature {
         }
     }
     
-    public var body: some ReducerOf<Self> {
+    var body: some ReducerOf<Self> {
         BindingReducer(action: \.view)
         Reduce { state, action in
             switch action {
-            case .alert(_):
-                return .none
+            case .onAppear:
+                return .run { send in
+                    let resultCode = await testAPI(url: "https://api.giphy.com/v1/gifs/random?api_key=mUjOyCy2TcvgUSYT10kLOSEssPcsTpCB&tag=&rating=g")
+                    print("\(resultCode)")
+                }
             case .loginFail:
                 state.loginError = .emptyFields
                 state.alert = AlertState { 
-                    TextState("Error")
+                    TextState("\(state.loginError.rawValue)")
                 }
-                return .none
-            case .view(.binding(\.password)):
-                return .none
-            case .view(.binding(\.email)):
-                // validation check
                 return .none
             case .view(.loginButtonTapped):
-                return .run { send in
-                    await send(.loginFail)
-                }
+                return .send(.loginFail)
             case .view(.forgotIDPasswordTapped):
+                state.path.append(.find(FindFeature.State()))
                 return .none
             case .view(.createAccountTapped):
-                return .run { send in
-                    await send(.navigateToSignUp)
-                }
+                state.path.append(.signUp(SignUpFeature.State()))
+                return .none
+            case .path:
+                return .none
+            case .alert:
+                return .none
             case .view(.binding):
-                return .none
-            case .navigateToMain:
-                return .none
-            case .navigateToSignUp:
                 return .none
             }
         }
         .ifLet(\.$alert, action: \.alert)
+        .forEach(\.path, action: \.path)
     }
 }
 
-enum LoginError {
+enum LoginError: String {
     case none
-    case emptyFields
+    case emptyFields = "Please input Email / Password"
+}
+
+extension SignInFeature {
+    func testAPI(url: String) async -> Int? {
+        do {
+            let result = try await GiphyAPIProvider().request(endpoint: url)
+            return 200
+        } catch {
+            print("\(error)")
+            return 0
+        }
+    }
 }
