@@ -29,12 +29,11 @@ struct SignInView: View {
                     FindView(store: store)
                 case .signUp(let store):
                     SignUpView(store: store)
+                case .main(let store):
+                    MainView(store: store)
                 }
             }
         )
-        .onAppear {
-            store.send(.onAppear)
-        }
     }
 }
 

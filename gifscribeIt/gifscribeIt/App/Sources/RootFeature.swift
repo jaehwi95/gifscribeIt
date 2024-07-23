@@ -7,6 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
+import FirebaseAuth
 
 @Reducer
 struct RootFeature {
@@ -16,11 +17,10 @@ struct RootFeature {
         case main(MainFeature.State)
         
         init() {
-            // check is signed in
-            if true {
-                self = .signIn(.init())
-            } else {
+            if Auth.auth().currentUser?.uid != nil {
                 self = .main(.init())
+            } else {
+                self = .signIn(.init())
             }
         }
     }

@@ -23,7 +23,16 @@
 		EB2653AA2C4DF96A003B89D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB2653A92C4DF96A003B89D4 /* GoogleService-Info.plist */; };
 		EB2653AD2C4E3BD6003B89D4 /* FindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653AC2C4E3BD6003B89D4 /* FindView.swift */; };
 		EB2653AF2C4E3BE6003B89D4 /* FindFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653AE2C4E3BE6003B89D4 /* FindFeature.swift */; };
-		EB2653B22C4E54AB003B89D4 /* GiphyAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653B12C4E54AB003B89D4 /* GiphyAPIProvider.swift */; };
+		EB2653B22C4E54AB003B89D4 /* GiphyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653B12C4E54AB003B89D4 /* GiphyProvider.swift */; };
+		EB2653B52C4F3854003B89D4 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = EB2653B42C4F3854003B89D4 /* CombineMoya */; };
+		EB2653B72C4F3854003B89D4 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = EB2653B62C4F3854003B89D4 /* Moya */; };
+		EB2653B92C4F3854003B89D4 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = EB2653B82C4F3854003B89D4 /* ReactiveMoya */; };
+		EB2653BB2C4F3854003B89D4 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = EB2653BA2C4F3854003B89D4 /* RxMoya */; };
+		EB2653BE2C4F3974003B89D4 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653BD2C4F3973003B89D4 /* AuthService.swift */; };
+		EB2653C22C4F3C9B003B89D4 /* Giphy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653C12C4F3C9B003B89D4 /* Giphy.swift */; };
+		EB2653C42C4F715E003B89D4 /* GiphyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653C32C4F715E003B89D4 /* GiphyClient.swift */; };
+		EB2653C92C4F7517003B89D4 /* SearchGifEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653C82C4F7517003B89D4 /* SearchGifEntity.swift */; };
+		EB2653CD2C4F886F003B89D4 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653CC2C4F886F003B89D4 /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +51,12 @@
 		EB2653A92C4DF96A003B89D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EB2653AC2C4E3BD6003B89D4 /* FindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindView.swift; sourceTree = "<group>"; };
 		EB2653AE2C4E3BE6003B89D4 /* FindFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFeature.swift; sourceTree = "<group>"; };
-		EB2653B12C4E54AB003B89D4 /* GiphyAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyAPIProvider.swift; sourceTree = "<group>"; };
+		EB2653B12C4E54AB003B89D4 /* GiphyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyProvider.swift; sourceTree = "<group>"; };
+		EB2653BD2C4F3973003B89D4 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		EB2653C12C4F3C9B003B89D4 /* Giphy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Giphy.swift; sourceTree = "<group>"; };
+		EB2653C32C4F715E003B89D4 /* GiphyClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyClient.swift; sourceTree = "<group>"; };
+		EB2653C82C4F7517003B89D4 /* SearchGifEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGifEntity.swift; sourceTree = "<group>"; };
+		EB2653CC2C4F886F003B89D4 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,8 +64,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB2653BB2C4F3854003B89D4 /* RxMoya in Frameworks */,
 				EB26538F2C489C45003B89D4 /* ComposableArchitecture in Frameworks */,
 				196EA0402C4D2DF700DD25DC /* FirebaseAuth in Frameworks */,
+				EB2653B72C4F3854003B89D4 /* Moya in Frameworks */,
+				EB2653B92C4F3854003B89D4 /* ReactiveMoya in Frameworks */,
+				EB2653B52C4F3854003B89D4 /* CombineMoya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +135,7 @@
 		EB2653932C48ADAE003B89D4 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EB2653BC2C4F3969003B89D4 /* Auth */,
 				EB2653B02C4E5408003B89D4 /* Giphy */,
 			);
 			path = Domain;
@@ -203,9 +222,45 @@
 		EB2653B02C4E5408003B89D4 /* Giphy */ = {
 			isa = PBXGroup;
 			children = (
-				EB2653B12C4E54AB003B89D4 /* GiphyAPIProvider.swift */,
+				EB2653C62C4F732C003B89D4 /* Entity */,
+				EB2653C72C4F7331003B89D4 /* Model */,
+				EB2653C52C4F7316003B89D4 /* API */,
 			);
 			path = Giphy;
+			sourceTree = "<group>";
+		};
+		EB2653BC2C4F3969003B89D4 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EB2653BD2C4F3973003B89D4 /* AuthService.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		EB2653C52C4F7316003B89D4 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				EB2653B12C4E54AB003B89D4 /* GiphyProvider.swift */,
+				EB2653C12C4F3C9B003B89D4 /* Giphy.swift */,
+				EB2653C32C4F715E003B89D4 /* GiphyClient.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		EB2653C62C4F732C003B89D4 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				EB2653C82C4F7517003B89D4 /* SearchGifEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		EB2653C72C4F7331003B89D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EB2653CC2C4F886F003B89D4 /* SearchResult.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +282,10 @@
 			packageProductDependencies = (
 				EB26538E2C489C45003B89D4 /* ComposableArchitecture */,
 				196EA03F2C4D2DF700DD25DC /* FirebaseAuth */,
+				EB2653B42C4F3854003B89D4 /* CombineMoya */,
+				EB2653B62C4F3854003B89D4 /* Moya */,
+				EB2653B82C4F3854003B89D4 /* ReactiveMoya */,
+				EB2653BA2C4F3854003B89D4 /* RxMoya */,
 			);
 			productName = gifscribeIt;
 			productReference = EB26537C2C48987C003B89D4 /* gifscribeIt.app */;
@@ -259,6 +318,7 @@
 			packageReferences = (
 				EB26538D2C489C45003B89D4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				196EA03E2C4D2DF700DD25DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EB2653B32C4F3854003B89D4 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = EB26537D2C48987C003B89D4 /* Products */;
 			projectDirPath = "";
@@ -287,18 +347,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB2653C42C4F715E003B89D4 /* GiphyClient.swift in Sources */,
 				196EA0472C4D2F8700DD25DC /* SignUpFeature.swift in Sources */,
 				EB26539A2C48B4DC003B89D4 /* RootFeature.swift in Sources */,
 				EB2653A42C48E499003B89D4 /* MainView.swift in Sources */,
 				EB2653AF2C4E3BE6003B89D4 /* FindFeature.swift in Sources */,
 				EB2653A62C48E4A1003B89D4 /* MainFeature.swift in Sources */,
 				EB2653A22C48E3D5003B89D4 /* SignInFeature.swift in Sources */,
+				EB2653BE2C4F3974003B89D4 /* AuthService.swift in Sources */,
 				EB2653AD2C4E3BD6003B89D4 /* FindView.swift in Sources */,
+				EB2653C92C4F7517003B89D4 /* SearchGifEntity.swift in Sources */,
 				196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */,
 				EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */,
 				EB2653A02C48E3C7003B89D4 /* SignInView.swift in Sources */,
 				EB2653922C48AAAF003B89D4 /* RootView.swift in Sources */,
-				EB2653B22C4E54AB003B89D4 /* GiphyAPIProvider.swift in Sources */,
+				EB2653B22C4E54AB003B89D4 /* GiphyProvider.swift in Sources */,
+				EB2653C22C4F3C9B003B89D4 /* Giphy.swift in Sources */,
+				EB2653CD2C4F886F003B89D4 /* SearchResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +500,7 @@
 				DEVELOPMENT_TEAM = 6973WVKMZ8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gifscribeIt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GifscribeIt;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -470,6 +536,7 @@
 				DEVELOPMENT_TEAM = 6973WVKMZ8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gifscribeIt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GifscribeIt;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -534,6 +601,14 @@
 				minimumVersion = 1.11.2;
 			};
 		};
+		EB2653B32C4F3854003B89D4 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -546,6 +621,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EB26538D2C489C45003B89D4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		EB2653B42C4F3854003B89D4 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB2653B32C4F3854003B89D4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		EB2653B62C4F3854003B89D4 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB2653B32C4F3854003B89D4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		EB2653B82C4F3854003B89D4 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB2653B32C4F3854003B89D4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		EB2653BA2C4F3854003B89D4 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB2653B32C4F3854003B89D4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

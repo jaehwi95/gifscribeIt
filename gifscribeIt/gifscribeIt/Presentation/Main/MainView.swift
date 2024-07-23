@@ -9,14 +9,18 @@ import Foundation
 import SwiftUI
 import ComposableArchitecture
 
+@ViewAction(for: MainFeature.self)
 struct MainView: View {
     let store: StoreOf<MainFeature>
     
     var body: some View {
-        VStack {
+        VStack(spacing: 40) {
             Text("Main View")
-            Button("Go Back") {
-                store.send(.goBack)
+            Button("Test get search") {
+                send(.searchButtonTapped)
+            }
+            Button("Log Out") {
+                send(.logoutButtonTapped)
             }
         }
     }

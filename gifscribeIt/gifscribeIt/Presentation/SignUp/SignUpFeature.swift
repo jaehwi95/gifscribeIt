@@ -58,7 +58,7 @@ extension SignUpFeature {
     func emailAuthSignUp(email: String, password: String) async -> Int? {
         do {
             let result: AuthDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
-            let user: User = result.user
+            let user = result.user
             print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
             return 200
         } catch {

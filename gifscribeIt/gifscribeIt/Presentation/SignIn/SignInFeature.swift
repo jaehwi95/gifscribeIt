@@ -7,6 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
+import FirebaseAuth
 
 @Reducer
 struct SignInFeature {
@@ -23,13 +24,14 @@ struct SignInFeature {
     enum Path {
         case find(FindFeature)
         case signUp(SignUpFeature)
+        case main(MainFeature)
     }
     
     enum Action: Equatable, ViewAction {
         case alert(PresentationAction<Alert>)
         case path(StackActionOf<Path>)
-        case onAppear
-        case loginFail
+        case loginFail(LoginError)
+        case loginSuccess
         case view(View)
         
         enum Alert: Equatable {}
@@ -46,28 +48,33 @@ struct SignInFeature {
         BindingReducer(action: \.view)
         Reduce { state, action in
             switch action {
-            case .onAppear:
-                return .run { send in
-                    let resultCode = await testAPI(url: "https://api.giphy.com/v1/gifs/random?api_key=&tag=&rating=g")
-                    print("\(resultCode)")
-                }
-            case .loginFail:
-                state.loginError = .emptyFields
-                state.alert = AlertState { 
+            case .loginFail(let loginError):
+                state.loginError = loginError
+                state.alert = AlertState {
                     TextState("\(state.loginError.rawValue)")
                 }
                 return .none
+            case .loginSuccess:
+                state.path.append(.main(MainFeature.State()))
+                return .none
             case .view(.loginButtonTapped):
-                return .send(.loginFail)
+                if state.email.isEmpty || state.password.isEmpty {
+                    return .send(.loginFail(.emptyFields))
+                } else {
+                    return .run { 
+                        [email = state.email, password = state.password] send in
+                        await send(self.signIn(email: email, password: password))
+                    }
+                }
             case .view(.forgotIDPasswordTapped):
                 state.path.append(.find(FindFeature.State()))
                 return .none
             case .view(.createAccountTapped):
                 state.path.append(.signUp(SignUpFeature.State()))
                 return .none
-            case .path:
-                return .none
             case .alert:
+                return .none
+            case .path:
                 return .none
             case .view(.binding):
                 return .none
@@ -81,16 +88,19 @@ struct SignInFeature {
 enum LoginError: String {
     case none
     case emptyFields = "Please input Email / Password"
+    case firebaseAuthFail = "Firebase Auth Failure"
 }
 
 extension SignInFeature {
-    func testAPI(url: String) async -> Int? {
+    private func signIn(email: String, password: String) async -> Action {
         do {
-            let result = try await GiphyAPIProvider().request(endpoint: url)
-            return 200
+            let result: AuthDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
+            let user = result.user
+            print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
+            return .loginSuccess
         } catch {
-            print("\(error)")
-            return 0
+            print("Firebase Auth Error: \(error)")
+            return .loginFail(.firebaseAuthFail)
         }
     }
 }
