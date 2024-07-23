@@ -48,7 +48,7 @@ struct SignInFeature {
             switch action {
             case .onAppear:
                 return .run { send in
-                    let resultCode = await testAPI(url: "https://api.giphy.com/v1/gifs/random?api_key=mUjOyCy2TcvgUSYT10kLOSEssPcsTpCB&tag=&rating=g")
+                    let resultCode = await testAPI(url: "https://api.giphy.com/v1/gifs/random?api_key=&tag=&rating=g")
                     print("\(resultCode)")
                 }
             case .loginFail:

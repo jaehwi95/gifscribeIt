@@ -15,7 +15,7 @@ struct GiphyAPIProvider {
             }
             
             let queryParametersDictionary = [
-                "api_key": "mUjOyCy2TcvgUSYT10kLOSEssPcsTpCB",
+                "api_key": "",
                 "rating": "g"
             ]
             
