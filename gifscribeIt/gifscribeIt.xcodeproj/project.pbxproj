@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1963B9962C5107DF00EE3978 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1963B9952C5107DF00EE3978 /* GoogleService-Info.plist */; };
+		1963B9982C514A9A00EE3978 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B9972C514A9A00EE3978 /* GifImage.swift */; };
+		1963B99C2C51506A00EE3978 /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B99B2C51506A00EE3978 /* AddPostView.swift */; };
+		1963B99E2C51507100EE3978 /* AddPostFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B99D2C51507100EE3978 /* AddPostFeature.swift */; };
+		1963B9A02C51534A00EE3978 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B99F2C51534A00EE3978 /* PostDetailView.swift */; };
+		1963B9A22C51535300EE3978 /* PostDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B9A12C51535300EE3978 /* PostDetailFeature.swift */; };
 		196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0442C4D2F8100DD25DC /* SignUpView.swift */; };
 		196EA0472C4D2F8700DD25DC /* SignUpFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */; };
 		EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26537F2C48987C003B89D4 /* gifscribeItApp.swift */; };
@@ -19,7 +25,6 @@
 		EB2653A22C48E3D5003B89D4 /* SignInFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653A12C48E3D5003B89D4 /* SignInFeature.swift */; };
 		EB2653A42C48E499003B89D4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653A32C48E499003B89D4 /* MainView.swift */; };
 		EB2653A62C48E4A1003B89D4 /* MainFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653A52C48E4A1003B89D4 /* MainFeature.swift */; };
-		EB2653AA2C4DF96A003B89D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB2653A92C4DF96A003B89D4 /* GoogleService-Info.plist */; };
 		EB2653AD2C4E3BD6003B89D4 /* FindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653AC2C4E3BD6003B89D4 /* FindView.swift */; };
 		EB2653AF2C4E3BE6003B89D4 /* FindFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653AE2C4E3BE6003B89D4 /* FindFeature.swift */; };
 		EB2653B22C4E54AB003B89D4 /* GiphyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2653B12C4E54AB003B89D4 /* GiphyProvider.swift */; };
@@ -44,6 +49,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1963B9952C5107DF00EE3978 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1963B9972C514A9A00EE3978 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GifImage.swift; path = gifscribeIt/Presentation/SignUp/GifImage.swift; sourceTree = SOURCE_ROOT; };
+		1963B99B2C51506A00EE3978 /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
+		1963B99D2C51507100EE3978 /* AddPostFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostFeature.swift; sourceTree = "<group>"; };
+		1963B99F2C51534A00EE3978 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		1963B9A12C51535300EE3978 /* PostDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailFeature.swift; sourceTree = "<group>"; };
 		196EA0442C4D2F8100DD25DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFeature.swift; sourceTree = "<group>"; };
 		EB26537C2C48987C003B89D4 /* gifscribeIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gifscribeIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,7 +67,6 @@
 		EB2653A12C48E3D5003B89D4 /* SignInFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFeature.swift; sourceTree = "<group>"; };
 		EB2653A32C48E499003B89D4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		EB2653A52C48E4A1003B89D4 /* MainFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeature.swift; sourceTree = "<group>"; };
-		EB2653A92C4DF96A003B89D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EB2653AC2C4E3BD6003B89D4 /* FindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindView.swift; sourceTree = "<group>"; };
 		EB2653AE2C4E3BE6003B89D4 /* FindFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFeature.swift; sourceTree = "<group>"; };
 		EB2653B12C4E54AB003B89D4 /* GiphyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyProvider.swift; sourceTree = "<group>"; };
@@ -92,6 +102,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1963B9992C514FB600EE3978 /* AddPost */ = {
+			isa = PBXGroup;
+			children = (
+				1963B99B2C51506A00EE3978 /* AddPostView.swift */,
+				1963B99D2C51507100EE3978 /* AddPostFeature.swift */,
+			);
+			path = AddPost;
+			sourceTree = "<group>";
+		};
+		1963B99A2C514FD500EE3978 /* PostDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1963B99F2C51534A00EE3978 /* PostDetailView.swift */,
+				1963B9A12C51535300EE3978 /* PostDetailFeature.swift */,
+			);
+			path = PostDetail;
+			sourceTree = "<group>";
+		};
 		196EA0432C4D2F7200DD25DC /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +189,8 @@
 		EB2653952C48ADB6003B89D4 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				1963B99A2C514FD500EE3978 /* PostDetail */,
+				1963B9992C514FB600EE3978 /* AddPost */,
 				EB2653D52C50E25F003B89D4 /* Home */,
 				EB2653D62C50E293003B89D4 /* Setting */,
 				EB26539D2C48E330003B89D4 /* SignIn */,
@@ -189,6 +219,7 @@
 		EB2653982C48AE0B003B89D4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1963B9972C514A9A00EE3978 /* GifImage.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -196,7 +227,7 @@
 		EB26539B2C48B4E5003B89D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EB2653A92C4DF96A003B89D4 /* GoogleService-Info.plist */,
+				1963B9952C5107DF00EE3978 /* GoogleService-Info.plist */,
 				EB2653832C48987E003B89D4 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -391,8 +422,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB2653872C48987E003B89D4 /* Preview Assets.xcassets in Resources */,
+				1963B9962C5107DF00EE3978 /* GoogleService-Info.plist in Resources */,
 				EB2653842C48987E003B89D4 /* Assets.xcassets in Resources */,
-				EB2653AA2C4DF96A003B89D4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,9 +436,11 @@
 			files = (
 				EB2653C42C4F715E003B89D4 /* GiphyClient.swift in Sources */,
 				196EA0472C4D2F8700DD25DC /* SignUpFeature.swift in Sources */,
+				1963B9982C514A9A00EE3978 /* GifImage.swift in Sources */,
 				EB26539A2C48B4DC003B89D4 /* RootFeature.swift in Sources */,
 				EB2653A42C48E499003B89D4 /* MainView.swift in Sources */,
 				EB2653AF2C4E3BE6003B89D4 /* FindFeature.swift in Sources */,
+				1963B99E2C51507100EE3978 /* AddPostFeature.swift in Sources */,
 				EB2653A62C48E4A1003B89D4 /* MainFeature.swift in Sources */,
 				EB2653A22C48E3D5003B89D4 /* SignInFeature.swift in Sources */,
 				EB2653DE2C50E309003B89D4 /* SettingFeature.swift in Sources */,
@@ -416,11 +449,14 @@
 				EB2653DA2C50E2FA003B89D4 /* HomeFeature.swift in Sources */,
 				EB2653C92C4F7517003B89D4 /* SearchGifEntity.swift in Sources */,
 				EB2653D22C50B5EC003B89D4 /* GiphyError.swift in Sources */,
+				1963B9A22C51535300EE3978 /* PostDetailFeature.swift in Sources */,
 				196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */,
 				EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */,
 				EB2653D82C50E2F3003B89D4 /* HomeView.swift in Sources */,
+				1963B9A02C51534A00EE3978 /* PostDetailView.swift in Sources */,
 				EB2653A02C48E3C7003B89D4 /* SignInView.swift in Sources */,
 				EB2653922C48AAAF003B89D4 /* RootView.swift in Sources */,
+				1963B99C2C51506A00EE3978 /* AddPostView.swift in Sources */,
 				EB2653D42C50B6AF003B89D4 /* AuthError.swift in Sources */,
 				EB2653B22C4E54AB003B89D4 /* GiphyProvider.swift in Sources */,
 				EB2653C22C4F3C9B003B89D4 /* GiphyAPI.swift in Sources */,

@@ -17,6 +17,24 @@ struct HomeView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 40) {
+                    ForEach(store.posts) { post in
+                        VStack(spacing: 20) {
+                            Text("\(post.title)")
+                            HStack {
+                                GifImage(url: post.gifPreviewUrl)
+                                    .frame(height: 200)
+                                VStack {
+                                    Image(systemName: "arrowtriangle.up")
+                                    Text("\(post.point)")
+                                    Image(systemName: "arrowtriangle.down")
+                                }
+                            }
+                            if post.id != store.posts.last?.id {
+                                Divider()
+                            }
+                        }
+                    }
+                    
                     Text("Home View")
                     Button("Test get search") {
                         send(.searchButtonTapped)
@@ -25,6 +43,7 @@ struct HomeView: View {
                         send(.logoutButtonTapped)
                     }
                 }
+                .padding(.horizontal, 20)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -37,11 +56,12 @@ struct HomeView: View {
                         }
                     }
                     .pickerStyle(.segmented)
+                    .padding(.horizontal, 40)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(
                         action: {
-                            
+                            send(.addPostButtonTapped)
                         },
                         label: {
                             Image(systemName: "square.and.pencil")
