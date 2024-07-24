@@ -13,10 +13,6 @@ import ComposableArchitecture
 struct SignInView: View {
     @Bindable var store: StoreOf<SignInFeature>
     
-    init(store: StoreOf<SignInFeature>) {
-        self.store = store
-    }
-    
     var body: some View {
         NavigationStack(
             path: $store.scope(state: \.path, action: \.path),

@@ -11,70 +11,36 @@ import FirebaseAuth
 
 @Reducer
 struct MainFeature {
-    @Dependency(\.giphyClient) var giphyClient
+    enum Tab { case home, setting }
     
     @ObservableState
     struct State: Equatable {
-        
+        var currentTab: Tab = .home
+        var home = HomeFeature.State()
+        var setting = SettingFeature.State()
     }
     
-    enum Action: Equatable, ViewAction {
-        case view(View)
-        case logoutFail
-        case logoutSuccess
-        case searchFail
-        case searchSuccess
-        
-        @CasePathable
-        enum View: Equatable {
-            case logoutButtonTapped
-            case searchButtonTapped
-        }
+    enum Action: Equatable {
+        case home(HomeFeature.Action)
+        case setting(SettingFeature.Action)
+        case selectTab(Tab)
     }
     
     var body: some ReducerOf<Self> {
+        Scope(state: \.home, action: \.home) {
+            HomeFeature()
+        }
+        Scope(state: \.setting, action: \.setting) {
+            SettingFeature()
+        }
         Reduce { state, action in
             switch action {
-            case .logoutFail:
+            case .home, .setting:
                 return .none
-            case .logoutSuccess:
+            case .selectTab(let tab):
+                state.currentTab = tab
                 return .none
-            case .searchFail:
-                return .none
-            case .searchSuccess:
-                return .none
-            case .view(.logoutButtonTapped):
-                return .send(self.signOut())
-            case .view(.searchButtonTapped):
-                return .run { send in
-                    await send(self.searchGif(keyword: "cat"))
-                }
             }
-        }
-    }
-}
-
-extension MainFeature {
-    private func signOut() -> Action {
-        do {
-            try Auth.auth().signOut()
-            print("Signed out")
-            return .logoutSuccess
-        } catch {
-            print("Firebase Auth Error: \(error)")
-            return .logoutFail
-        }
-    }
-    
-    private func searchGif(keyword: String) async -> Action {
-        let result = await giphyClient.searchGif(keyword)
-        switch result {
-        case .success(let result):
-            print("Search Success \(result)")
-            return .searchSuccess
-        case .failure(let failure):
-            print("Search Fail \(result)")
-            return .searchFail
         }
     }
 }

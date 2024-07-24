@@ -1,5 +1,5 @@
 //
-//  Giphy.swift
+//  GiphyAPI.swift
 //  gifscribeIt
 //
 //  Created by Jaehwi Kim on 2024/07/23.
@@ -8,11 +8,11 @@
 import Foundation
 import Moya
 
-enum Giphy {
+enum GiphyAPI {
     case searchGifs(keyword: String)
 }
 
-extension Giphy: TargetType {
+extension GiphyAPI: TargetType {
     var baseURL: URL { URL(string: "https://api.giphy.com")! }
     
     var path: String {

@@ -8,27 +8,12 @@
 import Foundation
 import Moya
 
-public enum GiphyError: Error {
-    case badRequest
-    case unAuthorized
-    case forbidden
-    case notFound
-    case uriTooLong
-    case tooManyRequests
-    case clientError
-    case serverError
-    case unknownError(MoyaError)
-    case jsonDecodeError
-    case parseError
-    case none
-}
-
 final class GiphyProvider {
-    private static let provider = MoyaProvider<Giphy>(
+    private static let provider = MoyaProvider<GiphyAPI>(
         plugins: [NetworkLoggerPlugin()]
     )
     
-    static func request<T: Codable>(target: Giphy) async -> Result<T, GiphyError> {
+    static func request<T: Codable>(target: GiphyAPI) async -> Result<T, GiphyError> {
         let response = await provider.requestAsync(target: target)
         switch response {
         case .success(let success):

@@ -21,7 +21,7 @@ struct SignUpView: View {
             TextField("Password", text: $store.password)
                 .textFieldStyle(.roundedBorder)
                 .padding()
-            TextField("Confirm Password", text: $store.password)
+            TextField("Confirm Password", text: $store.confirmPassword)
                 .textFieldStyle(.roundedBorder)
                 .padding()
             Button(
@@ -32,5 +32,6 @@ struct SignUpView: View {
                 }
             )
         }
+        .alert($store.scope(state: \.alert, action: \.alert))
     }
 }

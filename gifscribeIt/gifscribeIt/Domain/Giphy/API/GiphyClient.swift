@@ -23,7 +23,7 @@ extension DependencyValues {
 extension GiphyClient: DependencyKey {
     static var liveValue = GiphyClient(
         searchGif: { keyword in
-            let target: Giphy = Giphy.searchGifs(keyword: keyword)
+            let target: GiphyAPI = GiphyAPI.searchGifs(keyword: keyword)
             let response: Result<SearchGifResponse, GiphyError> = await GiphyProvider.request(target: target)
             return response.map { success in
                 return success.toModel()

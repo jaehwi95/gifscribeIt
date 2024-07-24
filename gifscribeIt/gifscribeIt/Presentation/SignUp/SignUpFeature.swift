@@ -11,6 +11,8 @@ import FirebaseAuth
 
 @Reducer
 struct SignUpFeature {
+    @Dependency(\.authClient) var authClient
+    
     @ObservableState
     struct State: Equatable {
         @Presents var alert: AlertState<Action.Alert>?
@@ -19,12 +21,15 @@ struct SignUpFeature {
         var confirmPassword: String = ""
     }
     
-    enum Action: Sendable, ViewAction, Equatable {
+    enum Action: ViewAction, Equatable {
         case alert(PresentationAction<Alert>)
         case view(View)
-        case signUp
+        case signUpFail(String)
+        case signUpSuccess(String)
         
-        enum Alert: Equatable, Sendable {}
+        enum Alert: Equatable {
+            case navigateToMain
+        }
         
         @CasePathable
         enum View: BindableAction, Sendable, Equatable {
@@ -37,15 +42,30 @@ struct SignUpFeature {
         BindingReducer(action: \.view)
         Reduce { state, action in
             switch action {
-            case .alert(_):
-                return .none
-            case .signUp:
-                return .run { [email = state.email, password = state.password] send in
-                    let resultCode = await emailAuthSignUp(email: email, password: password)
-                    print("\(resultCode)")
+            case .signUpFail(let errorMessage):
+                state.alert = AlertState {
+                    TextState("\(errorMessage)")
                 }
+                return .none
+            case .signUpSuccess(let email):
+                state.alert = AlertState(
+                    title: TextState("Sign Up Success"),
+                    message: TextState("Signing in as: \(email)"),
+                    dismissButton: .default(TextState("Confirm"), action: .send(.navigateToMain))
+                )
+                return .none
             case .view(.signUpButtonTapped):
-                return .send(.signUp)
+                let isAllTextFieldsFilled = [state.email, state.password, state.confirmPassword].allSatisfy { !$0.isEmpty }
+                if isAllTextFieldsFilled {
+                    return .run {
+                        [email = state.email, password = state.password] send in
+                        await send(self.signUp(email: email, password: password))
+                    }
+                } else {
+                    return .send(.signUpFail("Please check your fields again"))
+                }
+            case .alert:
+                return .none
             case .view(.binding):
                 return .none
             }
@@ -55,15 +75,13 @@ struct SignUpFeature {
 }
 
 extension SignUpFeature {
-    func emailAuthSignUp(email: String, password: String) async -> Int? {
-        do {
-            let result: AuthDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
-            let user = result.user
-            print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
-            return 200
-        } catch {
-            print("\(error)")
-            return 0
+    private func signUp(email: String, password: String) async -> Action {
+        let result = await authClient.signUp(email, password)
+        switch result {
+        case .success(let email):
+            return .signUpSuccess(email)
+        case .failure(let failure):
+            return .signUpFail(failure.errorMessage)
         }
     }
 }

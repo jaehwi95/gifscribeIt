@@ -11,13 +11,14 @@ import FirebaseAuth
 
 @Reducer
 struct SignInFeature {
+    @Dependency(\.authClient) var authClient
+    
     @ObservableState
     struct State: Equatable {
         @Presents var alert: AlertState<Action.Alert>?
         var path = StackState<Path.State>()
         var email: String = ""
         var password: String = ""
-        var loginError: LoginError = .none
     }
     
     @Reducer(state: .equatable, action: .equatable)
@@ -30,7 +31,7 @@ struct SignInFeature {
     enum Action: Equatable, ViewAction {
         case alert(PresentationAction<Alert>)
         case path(StackActionOf<Path>)
-        case loginFail(LoginError)
+        case loginFail(String)
         case loginSuccess
         case view(View)
         
@@ -48,10 +49,9 @@ struct SignInFeature {
         BindingReducer(action: \.view)
         Reduce { state, action in
             switch action {
-            case .loginFail(let loginError):
-                state.loginError = loginError
+            case .loginFail(let errorMessage):
                 state.alert = AlertState {
-                    TextState("\(state.loginError.rawValue)")
+                    TextState("\(errorMessage)")
                 }
                 return .none
             case .loginSuccess:
@@ -59,7 +59,7 @@ struct SignInFeature {
                 return .none
             case .view(.loginButtonTapped):
                 if state.email.isEmpty || state.password.isEmpty {
-                    return .send(.loginFail(.emptyFields))
+                    return .send(.loginFail("Please input Email / Password"))
                 } else {
                     return .run { 
                         [email = state.email, password = state.password] send in
@@ -74,6 +74,9 @@ struct SignInFeature {
                 return .none
             case .alert:
                 return .none
+            case .path(.element(_, .signUp(.alert(.presented(.navigateToMain))))):
+                state.path.append(.main(MainFeature.State()))
+                return .none
             case .path:
                 return .none
             case .view(.binding):
@@ -85,22 +88,15 @@ struct SignInFeature {
     }
 }
 
-enum LoginError: String {
-    case none
-    case emptyFields = "Please input Email / Password"
-    case firebaseAuthFail = "Firebase Auth Failure"
-}
-
 extension SignInFeature {
     private func signIn(email: String, password: String) async -> Action {
-        do {
-            let result: AuthDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
-            let user = result.user
-            print("Signed in as user \(user.uid), with email: \(user.email ?? "")")
+        let result = await authClient.signIn(email, password)
+        switch result {
+        case .success(let email):
+            print("Signed in as: \(email)")
             return .loginSuccess
-        } catch {
-            print("Firebase Auth Error: \(error)")
-            return .loginFail(.firebaseAuthFail)
+        case .failure(let failure):
+            return .loginFail(failure.errorMessage)
         }
     }
 }
