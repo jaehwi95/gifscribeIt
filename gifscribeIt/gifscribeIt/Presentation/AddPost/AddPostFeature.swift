@@ -13,6 +13,7 @@ import FirebaseDatabase
 @Reducer
 struct AddPostFeature {
     @Dependency(\.postClient) var postClient
+    @Dependency(\.giphyClient) var giphyClient
     
     @ObservableState
     struct State: Equatable {
@@ -30,6 +31,9 @@ struct AddPostFeature {
             return [title, content, gifPreviewUrl, gifContentUrl, user].allSatisfy { !$0.isEmpty }
         }
         var isSheetPresented = false
+        var searchText = ""
+        
+        var searchResultList: [GifItem] = []
     }
     
     enum Action: Equatable, ViewAction {
@@ -38,6 +42,9 @@ struct AddPostFeature {
         case addPostSuccess
         case addPostFailure
         case setSheet(Bool)
+        case searchFail
+        case searchSuccess
+        case setSearchResultList([GifItem])
         
         enum Alert: Equatable {}
         
@@ -47,6 +54,8 @@ struct AddPostFeature {
             case goBackButtonTapped
             case addPostButtonTapped
             case searchGifButtonTapped
+            case searchButtonTapped
+            case gifItemTapped(String, String)
         }
     }
     
@@ -60,6 +69,13 @@ struct AddPostFeature {
                 return .none
             case .setSheet(let isPresented):
                 state.isSheetPresented = isPresented
+                return .none
+            case .searchFail:
+                return .none
+            case .searchSuccess:
+                return .none
+            case .setSearchResultList(let gifItems):
+                state.searchResultList = gifItems
                 return .none
             case .view(.goBackButtonTapped):
                 return .none
@@ -75,12 +91,15 @@ struct AddPostFeature {
                     ))
                 }
             case .view(.searchGifButtonTapped):
-                state.gifPreviewUrl = "https://media3.giphy.com/media/yFQ0ywscgobJK/200_d.gif?cid=24c7c7bcb9zvxf7jyt0ctx3z0l9rfbkexagxn31t9lmcp125&ep=v1_gifs_search&rid=200_d.gif&ct=g"
-                state.gifContentUrl = "https://media3.giphy.com/media/yFQ0ywscgobJK/giphy.gif?cid=24c7c7bcb9zvxf7jyt0ctx3z0l9rfbkexagxn31t9lmcp125&ep=v1_gifs_search&rid=giphy.gif&ct=g"
                 return .send(.setSheet(true))
-//                return .run { send in
-//                    await send(self.getAllPosts())
-//                }
+            case .view(.searchButtonTapped):
+                return .run { [keyword = state.searchText] send in
+                    await send(self.searchGif(keyword: "\(keyword)"))
+                }
+            case .view(.gifItemTapped(let previewUrl, let contentUrl)):
+                state.gifPreviewUrl = previewUrl
+                state.gifContentUrl = contentUrl
+                return .send(.setSheet(false))
             case .view(.binding):
                 return .none
             case .alert:
@@ -107,6 +126,16 @@ extension AddPostFeature {
             return .addPostSuccess
         case .failure(let failure):
             return .addPostFailure
+        }
+    }
+    
+    private func searchGif(keyword: String) async -> Action {
+        let result = await giphyClient.searchGif(keyword)
+        switch result {
+        case .success(let result):
+            return .setSearchResultList(result.gifs)
+        case .failure(let failure):
+            return .searchFail
         }
     }
 }

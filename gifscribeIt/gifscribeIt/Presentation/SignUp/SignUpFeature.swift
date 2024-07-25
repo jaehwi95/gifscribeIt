@@ -19,6 +19,9 @@ struct SignUpFeature {
         var email: String = ""
         var password: String = ""
         var confirmPassword: String = ""
+        var isSignUpPossible: Bool {
+            !password.isEmpty && (password == confirmPassword)
+        }
     }
     
     enum Action: ViewAction, Equatable {
@@ -26,9 +29,10 @@ struct SignUpFeature {
         case view(View)
         case signUpFail(String)
         case signUpSuccess(String)
+        case logoutFail(String)
         
         enum Alert: Equatable {
-            case navigateToMain
+            case navigateToSignIn
         }
         
         @CasePathable
@@ -50,9 +54,14 @@ struct SignUpFeature {
             case .signUpSuccess(let email):
                 state.alert = AlertState(
                     title: TextState("Sign Up Success"),
-                    message: TextState("Signing in as: \(email)"),
-                    dismissButton: .default(TextState("Confirm"), action: .send(.navigateToMain))
+                    message: TextState("Account created: \(email). Please Login"),
+                    dismissButton: .default(TextState("Confirm"), action: .send(.navigateToSignIn))
                 )
+                return .none
+            case .logoutFail(let errorMessage):
+                state.alert = AlertState {
+                    TextState("\(errorMessage)")
+                }
                 return .none
             case .view(.signUpButtonTapped):
                 let isAllTextFieldsFilled = [state.email, state.password, state.confirmPassword].allSatisfy { !$0.isEmpty }
@@ -64,9 +73,9 @@ struct SignUpFeature {
                 } else {
                     return .send(.signUpFail("Please check your fields again"))
                 }
-            case .alert:
-                return .none
             case .view(.binding):
+                return .none
+            case .alert:
                 return .none
             }
         }
@@ -79,9 +88,19 @@ extension SignUpFeature {
         let result = await authClient.signUp(email, password)
         switch result {
         case .success(let email):
-            return .signUpSuccess(email)
+            return logout(email: email)
         case .failure(let failure):
             return .signUpFail(failure.errorMessage)
+        }
+    }
+    
+    private func logout(email: String) -> Action {
+        let result = authClient.logout()
+        switch result {
+        case .success:
+            return .signUpSuccess(email)
+        case .failure(let failure):
+            return .logoutFail(failure.errorMessage)
         }
     }
 }

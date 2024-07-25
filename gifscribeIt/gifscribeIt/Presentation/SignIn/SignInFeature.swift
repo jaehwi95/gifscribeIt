@@ -23,7 +23,7 @@ struct SignInFeature {
     
     @Reducer(state: .equatable, action: .equatable)
     enum Path {
-        case find(FindFeature)
+//        case find(FindFeature)
         case signUp(SignUpFeature)
         case main(MainFeature)
     }
@@ -40,7 +40,7 @@ struct SignInFeature {
         enum View: Equatable, BindableAction {
             case binding(BindingAction<State>)
             case loginButtonTapped
-            case forgotIDPasswordTapped
+//            case forgotIDPasswordTapped
             case createAccountTapped
         }
     }
@@ -55,7 +55,9 @@ struct SignInFeature {
                 }
                 return .none
             case .loginSuccess:
+                print("jaebi: \(state.path)")
                 state.path.append(.main(MainFeature.State()))
+                print("jaebi: \(state.path)")
                 return .none
             case .view(.loginButtonTapped):
                 if state.email.isEmpty || state.password.isEmpty {
@@ -66,20 +68,20 @@ struct SignInFeature {
                         await send(self.signIn(email: email, password: password))
                     }
                 }
-            case .view(.forgotIDPasswordTapped):
-                state.path.append(.find(FindFeature.State()))
-                return .none
+//            case .view(.forgotIDPasswordTapped):
+//                state.path.append(.find(FindFeature.State()))
+//                return .none
             case .view(.createAccountTapped):
                 state.path.append(.signUp(SignUpFeature.State()))
                 return .none
+            case .view(.binding):
+                return .none
             case .alert:
                 return .none
-            case .path(.element(_, .signUp(.alert(.presented(.navigateToMain))))):
-                state.path.append(.main(MainFeature.State()))
+            case .path(.element(_, .signUp(.alert(.presented(.navigateToSignIn))))):
+                state.path.removeLast()
                 return .none
             case .path:
-                return .none
-            case .view(.binding):
                 return .none
             }
         }
@@ -93,7 +95,6 @@ extension SignInFeature {
         let result = await authClient.signIn(email, password)
         switch result {
         case .success(let email):
-            print("Signed in as: \(email)")
             return .loginSuccess
         case .failure(let failure):
             return .loginFail(failure.errorMessage)

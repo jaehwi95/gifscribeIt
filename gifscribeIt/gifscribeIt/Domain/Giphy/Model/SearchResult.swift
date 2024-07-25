@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchResult {
+struct SearchResult: Equatable {
     let gifs: [GifItem]
     let count, offset: Int
     
@@ -18,7 +18,7 @@ struct SearchResult {
     }
 }
 
-struct GifItem {
+struct GifItem: Equatable, Hashable {
     let originalURL: String
     let height200URL: String
     let height200DownsampledURL: String

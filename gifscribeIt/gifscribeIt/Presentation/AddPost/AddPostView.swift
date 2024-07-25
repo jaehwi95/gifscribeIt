@@ -12,6 +12,9 @@ import ComposableArchitecture
 @ViewAction(for: AddPostFeature.self)
 struct AddPostView: View {
     @Bindable var store: StoreOf<AddPostFeature>
+    private let adaptiveColumn = [
+        GridItem(.adaptive(minimum: 150))
+    ]
     
     var body: some View {
         Form {
@@ -31,6 +34,10 @@ struct AddPostView: View {
                         Text("Search GIF")
                     }
                 )
+                if !store.gifContentUrl.isEmpty {
+                    GifImage(url: store.gifContentUrl)
+                        .frame(height: 200)
+                }
             }
             Section("User*") {
                 Text("\(store.user)")
@@ -70,8 +77,70 @@ struct AddPostView: View {
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $store.isSheetPresented.sending(\.setSheet)) {
             VStack {
-                Text("Sheet View")
+                SearchGifView
             }
         }
+        .presentationDragIndicator(.visible)
+    }
+}
+
+extension AddPostView {
+    private var SearchGifView: some View {
+        VStack {
+            HStack {
+                HStack(spacing: 20) {
+                    Image(systemName: "magnifyingglass")
+                    TextField("Search", text: $store.searchText)
+                        .foregroundColor(.primary)
+                    if !store.searchText.isEmpty {
+                        Button(
+                            action: {
+                                
+                            },
+                            label: {
+                                Image(systemName: "xmark.circle.fill")
+                            }
+                        )
+                    } else {
+                        EmptyView()
+                    }
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .foregroundColor(.secondary)
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(4)
+                Button(
+                    action: {
+                        send(.searchButtonTapped)
+                    },
+                    label: {
+                        Text("Search")
+                    }
+                )
+            }
+            ScrollView {
+                LazyVGrid(columns: adaptiveColumn, spacing: 20) {
+                    ForEach(store.searchResultList, id: \.self) { result in
+                        Button(
+                            action: {
+                                send(.gifItemTapped(
+                                    result.height200DownsampledURL,
+                                    result.originalURL
+                                ))
+                            },
+                            label: {
+                                GifImage(url: result.height100URL)
+                                    .frame(height: 100)
+                            }
+                        )
+                    }
+                }
+                .padding(.horizontal, 20)
+            }
+            Spacer()
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 40)
     }
 }

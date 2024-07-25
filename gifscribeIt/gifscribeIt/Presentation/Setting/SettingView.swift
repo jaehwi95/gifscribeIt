@@ -16,6 +16,9 @@ struct SettingView: View {
     var body: some View {
         VStack(spacing: 40) {
             Text("Setting View")
+            Button("Log Out") {
+                send(.logoutButtonTapped)
+            }
         }
 //        .navigationBarBackButtonHidden(true)
     }

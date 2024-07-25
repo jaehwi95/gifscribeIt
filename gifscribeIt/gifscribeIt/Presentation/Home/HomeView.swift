@@ -41,26 +41,37 @@ extension HomeView {
                 ForEach(store.posts, id: \.self.id) { post in
                     VStack(spacing: 20) {
                         Text("\(post.title)")
-                        HStack {
+                            .font(.custom("TrebuchetMS-Bold", size: 20))
+                        HStack(spacing: 20) {
                             GifImage(url: post.gifPreviewUrl)
                                 .frame(height: 200)
-                            VStack {
-                                Image(systemName: "arrowtriangle.up")
+                            VStack(spacing: 10) {
+                                Button(
+                                    action: {
+                                        send(.addPointToPost(post.id))
+                                    },
+                                    label: {
+                                        Image(systemName: "arrowtriangle.up.fill")
+                                            .font(.system(size: 40))
+                                    }
+                                )
                                 Text("\(post.point)")
-                                Image(systemName: "arrowtriangle.down")
+                                Button(
+                                    action: {
+                                        
+                                    },
+                                    label: {
+                                        Image(systemName: "arrowtriangle.down.fill")
+                                            .font(.system(size: 40))
+                                    }
+                                )
+
                             }
                         }
                         if post.id != store.posts.last?.id {
                             Divider()
                         }
                     }
-                }
-                Text("Home View")
-                Button("Test get search") {
-                    send(.searchButtonTapped)
-                }
-                Button("Log Out") {
-                    send(.logoutButtonTapped)
                 }
             }
             .padding(.horizontal, 20)

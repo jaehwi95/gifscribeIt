@@ -11,8 +11,6 @@ import FirebaseFirestore
 
 @Reducer
 struct HomeFeature {
-    @Dependency(\.authClient) var authClient
-    @Dependency(\.giphyClient) var giphyClient
     @Dependency(\.postClient) var postClient
     
     @ObservableState
@@ -31,20 +29,17 @@ struct HomeFeature {
     
     enum Action: Equatable, ViewAction {
         case path(StackActionOf<Path>)
-        case logoutFail(String)
-        case logoutSuccess
-        case searchFail
-        case searchSuccess
         case setPostsList([Post])
+        case getAllPostsFail
+        case updatePosts
         case view(View)
         
         @CasePathable
         enum View: Equatable, BindableAction {
             case onAppear
             case binding(BindingAction<State>)
-            case logoutButtonTapped
-            case searchButtonTapped
             case createPostButtonTapped
+            case addPointToPost(String?)
             case postTapped
         }
     }
@@ -53,30 +48,24 @@ struct HomeFeature {
         BindingReducer(action: \.view)
         Reduce { state, action in
             switch action {
-            case .logoutFail:
-                return .none
-            case .logoutSuccess:
-                return .none
-            case .searchFail:
-                return .none
-            case .searchSuccess:
-                return .none
             case .setPostsList(let posts):
-                state.posts = posts
+                state.posts = sortPostsByPoints(posts: posts)
                 return .none
+            case .getAllPostsFail:
+                return .none
+            case .updatePosts:
+                return .send(.view(.onAppear))
             case .view(.onAppear):
                 return .run { send in
                     await send(self.getAllPosts())
                 }
-            case .view(.logoutButtonTapped):
-                return .send(self.logout())
-            case .view(.searchButtonTapped):
-                return .run { send in
-                    await send(self.searchGif(keyword: "cat"))
-                }
             case .view(.createPostButtonTapped):
                 state.path.append(.addPost(AddPostFeature.State()))
                 return .none
+            case .view(.addPointToPost(let id)):
+                return .run { send in
+                    await send(self.addPoint(id: id))
+                }
             case .view(.postTapped):
                 return .none
             case .view(.binding):
@@ -97,34 +86,30 @@ extension HomeFeature {
         let result = await postClient.getAllPosts()
         switch result {
         case .success(let posts):
-            print("Posts: \(posts)")
             return .setPostsList(posts)
         case .failure(let failure):
-            return .searchFail
+            return .getAllPostsFail
         }
     }
     
-    private func logout() -> Action {
-        let result = authClient.logout()
+    private func addPoint(id: String?) async -> Action {
+        guard let id = id else {
+            return .getAllPostsFail
+        }
+        let result = await postClient.addPointFromPost(id)
         switch result {
         case .success:
-            print("Logged out")
-            return .logoutSuccess
+            return .updatePosts
         case .failure(let failure):
-            return .logoutFail(failure.errorMessage)
+            return .getAllPostsFail
         }
     }
-    
-    private func searchGif(keyword: String) async -> Action {
-        let result = await giphyClient.searchGif(keyword)
-        switch result {
-        case .success(let result):
-            print("Search Success \(result)")
-            return .searchSuccess
-        case .failure(let failure):
-            print("Search Fail \(result)")
-            return .searchFail
-        }
+}
+
+extension HomeFeature {
+    private func sortPostsByPoints(posts: [Post]) -> [Post] {
+        let sortedList = posts.sorted(by: { $0.point > $1.point })
+        return sortedList
     }
 }
 
