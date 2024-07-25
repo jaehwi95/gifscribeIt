@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1963B9962C5107DF00EE3978 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1963B9952C5107DF00EE3978 /* GoogleService-Info.plist */; };
 		1963B9982C514A9A00EE3978 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B9972C514A9A00EE3978 /* GifImage.swift */; };
 		1963B99C2C51506A00EE3978 /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B99B2C51506A00EE3978 /* AddPostView.swift */; };
 		1963B99E2C51507100EE3978 /* AddPostFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B99D2C51507100EE3978 /* AddPostFeature.swift */; };
@@ -46,10 +45,15 @@
 		EB26545A2C510379003B89D4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EB2654592C510379003B89D4 /* FirebaseAuth */; };
 		EB26545C2C510379003B89D4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = EB26545B2C510379003B89D4 /* FirebaseDatabase */; };
 		EB26545E2C510379003B89D4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EB26545D2C510379003B89D4 /* FirebaseFirestore */; };
+		EB2654602C51D22E003B89D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB26545F2C51D22D003B89D4 /* GoogleService-Info.plist */; };
+		EB2654622C51E241003B89D4 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2654612C51E241003B89D4 /* View+.swift */; };
+		EB2654652C51E7F4003B89D4 /* PostClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2654642C51E7F4003B89D4 /* PostClient.swift */; };
+		EB2654682C51E933003B89D4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2654672C51E933003B89D4 /* Post.swift */; };
+		EB26546A2C51EE73003B89D4 /* PostError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2654692C51EE73003B89D4 /* PostError.swift */; };
+		EB26546F2C520A99003B89D4 /* DictionaryCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26546E2C520A99003B89D4 /* DictionaryCodable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1963B9952C5107DF00EE3978 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1963B9972C514A9A00EE3978 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GifImage.swift; path = gifscribeIt/Presentation/SignUp/GifImage.swift; sourceTree = SOURCE_ROOT; };
 		1963B99B2C51506A00EE3978 /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
 		1963B99D2C51507100EE3978 /* AddPostFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostFeature.swift; sourceTree = "<group>"; };
@@ -81,6 +85,12 @@
 		EB2653D92C50E2FA003B89D4 /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
 		EB2653DB2C50E302003B89D4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		EB2653DD2C50E309003B89D4 /* SettingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFeature.swift; sourceTree = "<group>"; };
+		EB26545F2C51D22D003B89D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EB2654612C51E241003B89D4 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		EB2654642C51E7F4003B89D4 /* PostClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostClient.swift; sourceTree = "<group>"; };
+		EB2654672C51E933003B89D4 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		EB2654692C51EE73003B89D4 /* PostError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostError.swift; sourceTree = "<group>"; };
+		EB26546E2C520A99003B89D4 /* DictionaryCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCodable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +190,7 @@
 		EB2653932C48ADAE003B89D4 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EB2654632C51E7E7003B89D4 /* Post */,
 				EB2653BC2C4F3969003B89D4 /* Auth */,
 				EB2653B02C4E5408003B89D4 /* Giphy */,
 			);
@@ -211,6 +222,7 @@
 		EB2653972C48AE03003B89D4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				EB26546B2C52086C003B89D4 /* Converter */,
 				EB2653DF2C50EA26003B89D4 /* Extension */,
 			);
 			path = Util;
@@ -227,7 +239,7 @@
 		EB26539B2C48B4E5003B89D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1963B9952C5107DF00EE3978 /* GoogleService-Info.plist */,
+				EB26545F2C51D22D003B89D4 /* GoogleService-Info.plist */,
 				EB2653832C48987E003B89D4 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -337,6 +349,7 @@
 		EB2653DF2C50EA26003B89D4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				EB2654612C51E241003B89D4 /* View+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -346,6 +359,32 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB2654632C51E7E7003B89D4 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				EB2654662C51E909003B89D4 /* Model */,
+				EB2654642C51E7F4003B89D4 /* PostClient.swift */,
+				EB2654692C51EE73003B89D4 /* PostError.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		EB2654662C51E909003B89D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EB2654672C51E933003B89D4 /* Post.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EB26546B2C52086C003B89D4 /* Converter */ = {
+			isa = PBXGroup;
+			children = (
+				EB26546E2C520A99003B89D4 /* DictionaryCodable.swift */,
+			);
+			path = Converter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,7 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB2653872C48987E003B89D4 /* Preview Assets.xcassets in Resources */,
-				1963B9962C5107DF00EE3978 /* GoogleService-Info.plist in Resources */,
+				EB2654602C51D22E003B89D4 /* GoogleService-Info.plist in Resources */,
 				EB2653842C48987E003B89D4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,9 +482,11 @@
 				1963B99E2C51507100EE3978 /* AddPostFeature.swift in Sources */,
 				EB2653A62C48E4A1003B89D4 /* MainFeature.swift in Sources */,
 				EB2653A22C48E3D5003B89D4 /* SignInFeature.swift in Sources */,
+				EB26546F2C520A99003B89D4 /* DictionaryCodable.swift in Sources */,
 				EB2653DE2C50E309003B89D4 /* SettingFeature.swift in Sources */,
 				EB2653BE2C4F3974003B89D4 /* AuthClient.swift in Sources */,
 				EB2653AD2C4E3BD6003B89D4 /* FindView.swift in Sources */,
+				EB2654622C51E241003B89D4 /* View+.swift in Sources */,
 				EB2653DA2C50E2FA003B89D4 /* HomeFeature.swift in Sources */,
 				EB2653C92C4F7517003B89D4 /* SearchGifEntity.swift in Sources */,
 				EB2653D22C50B5EC003B89D4 /* GiphyError.swift in Sources */,
@@ -453,10 +494,13 @@
 				196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */,
 				EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */,
 				EB2653D82C50E2F3003B89D4 /* HomeView.swift in Sources */,
+				EB2654682C51E933003B89D4 /* Post.swift in Sources */,
 				1963B9A02C51534A00EE3978 /* PostDetailView.swift in Sources */,
 				EB2653A02C48E3C7003B89D4 /* SignInView.swift in Sources */,
+				EB2654652C51E7F4003B89D4 /* PostClient.swift in Sources */,
 				EB2653922C48AAAF003B89D4 /* RootView.swift in Sources */,
 				1963B99C2C51506A00EE3978 /* AddPostView.swift in Sources */,
+				EB26546A2C51EE73003B89D4 /* PostError.swift in Sources */,
 				EB2653D42C50B6AF003B89D4 /* AuthError.swift in Sources */,
 				EB2653B22C4E54AB003B89D4 /* GiphyProvider.swift in Sources */,
 				EB2653C22C4F3C9B003B89D4 /* GiphyAPI.swift in Sources */,

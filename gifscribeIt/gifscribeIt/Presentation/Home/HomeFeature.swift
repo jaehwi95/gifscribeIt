@@ -13,12 +13,14 @@ import FirebaseFirestore
 struct HomeFeature {
     @Dependency(\.authClient) var authClient
     @Dependency(\.giphyClient) var giphyClient
+    @Dependency(\.postClient) var postClient
     
     @ObservableState
     struct State: Equatable {
+        var path = StackState<Path.State>()
         var points: Int = 0
         var selectedCategory: Category = .hot
-        var posts: [PostModel] = [PostModel(), PostModel(), PostModel(), PostModel(), PostModel(), PostModel(), PostModel(), PostModel(), PostModel(), PostModel(), PostModel(), PostModel(), PostModel(), PostModel(), PostModel()]
+        var posts: [Post] = []
     }
     
     @Reducer(state: .equatable, action: .equatable)
@@ -28,18 +30,21 @@ struct HomeFeature {
     }
     
     enum Action: Equatable, ViewAction {
-        case view(View)
+        case path(StackActionOf<Path>)
         case logoutFail(String)
         case logoutSuccess
         case searchFail
         case searchSuccess
+        case setPostsList([Post])
+        case view(View)
         
         @CasePathable
         enum View: Equatable, BindableAction {
+            case onAppear
             case binding(BindingAction<State>)
             case logoutButtonTapped
             case searchButtonTapped
-            case addPostButtonTapped
+            case createPostButtonTapped
             case postTapped
         }
     }
@@ -56,24 +61,49 @@ struct HomeFeature {
                 return .none
             case .searchSuccess:
                 return .none
+            case .setPostsList(let posts):
+                state.posts = posts
+                return .none
+            case .view(.onAppear):
+                return .run { send in
+                    await send(self.getAllPosts())
+                }
             case .view(.logoutButtonTapped):
                 return .send(self.logout())
             case .view(.searchButtonTapped):
                 return .run { send in
                     await send(self.searchGif(keyword: "cat"))
                 }
-            case .view(.addPostButtonTapped):
+            case .view(.createPostButtonTapped):
+                state.path.append(.addPost(AddPostFeature.State()))
                 return .none
             case .view(.postTapped):
                 return .none
             case .view(.binding):
                 return .none
+            case .path(.element(_, .addPost(.view(.goBackButtonTapped)))):
+                let _ = state.path.popLast()
+                return .none
+            case .path:
+                return .none
             }
         }
+        .forEach(\.path, action: \.path)
     }
 }
 
 extension HomeFeature {
+    private func getAllPosts() async -> Action {
+        let result = await postClient.getAllPosts()
+        switch result {
+        case .success(let posts):
+            print("Posts: \(posts)")
+            return .setPostsList(posts)
+        case .failure(let failure):
+            return .searchFail
+        }
+    }
+    
     private func logout() -> Action {
         let result = authClient.logout()
         switch result {
@@ -101,43 +131,4 @@ extension HomeFeature {
 enum Category: String, CaseIterable, Identifiable {
     case hot, new, debated
     var id: Self { self }
-}
-
-struct PostModel: Equatable, Identifiable {
-    let id = UUID()
-    let title: String
-    let content: String
-    let point: Int
-    let gifPreviewUrl: String
-    let gifContentUrl: String
-    let userId: String
-    let date: Date
-    
-    init(
-        title: String,
-        content: String,
-        points: Int,
-        gifPreviewUrl: String,
-        gifContentUrl: String,
-        userId: String,
-        date: Date
-    ) {
-        self.title = title
-        self.content = content
-        self.point = points
-        self.gifPreviewUrl = gifPreviewUrl
-        self.gifContentUrl = gifContentUrl
-        self.userId = userId
-        self.date = date
-    }
-    
-    init() {
-        self.title = "Test Title"
-        self.content = "Test Contents"
-        self.point = 77
-        self.gifPreviewUrl = "https://media2.giphy.com/media/MDJ9IbxxvDUQM/200_d.gif?cid=24c7c7bci45bku8uibsm9q602xbjah66zaek412se628r00a&ep=v1_gifs_search&rid=200_d.gif&ct=g"
-        self.gifContentUrl = "https://media2.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif?cid=24c7c7bci45bku8uibsm9q602xbjah66zaek412se628r00a&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-        self.userId = "jaehwi95@gmail.com"
-        self.date = Date.now
-    }
 }

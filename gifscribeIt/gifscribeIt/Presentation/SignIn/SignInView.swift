@@ -17,7 +17,7 @@ struct SignInView: View {
         NavigationStack(
             path: $store.scope(state: \.path, action: \.path),
             root: {
-                SignInView
+                SignInViewBody
             },
             destination: { store in
                 switch store.case {
@@ -34,7 +34,7 @@ struct SignInView: View {
 }
 
 extension SignInView {
-    private var SignInView: some View {
+    private var SignInViewBody: some View {
         VStack(spacing: 20) {
             Text("Sign In")
             TextField("Email", text: $store.email)
