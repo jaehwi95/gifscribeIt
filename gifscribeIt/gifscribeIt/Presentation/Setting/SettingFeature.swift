@@ -7,6 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
+import FirebaseAuth
 
 @Reducer
 struct SettingFeature {
@@ -14,7 +15,9 @@ struct SettingFeature {
     
     @ObservableState
     struct State: Equatable {
-        
+        var user: String {
+            Auth.auth().currentUser?.email ?? ""
+        }
     }
     
     enum Action: Equatable, ViewAction {
@@ -49,7 +52,6 @@ extension SettingFeature {
         let result = authClient.logout()
         switch result {
         case .success:
-            print("Logged out")
             return .logoutSuccess
         case .failure(let failure):
             return .logoutFail(failure.errorMessage)

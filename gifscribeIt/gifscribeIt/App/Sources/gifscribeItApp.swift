@@ -28,7 +28,7 @@ struct gifscribeItApp: App {
         WindowGroup {
             RootView(
                 store: Store(initialState: RootFeature.State()) {
-                    RootFeature()
+                    RootFeature()._printChanges()
                 }
             )
         }

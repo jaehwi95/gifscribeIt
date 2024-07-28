@@ -11,15 +11,22 @@ import ComposableArchitecture
 
 @ViewAction(for: SettingFeature.self)
 struct SettingView: View {
-    let store: StoreOf<SettingFeature>
+    @Bindable var store: StoreOf<SettingFeature>
     
     var body: some View {
         VStack(spacing: 40) {
-            Text("Setting View")
-            Button("Log Out") {
-                send(.logoutButtonTapped)
+            List {
+                Section(header: Text("User Information")) {
+                    HStack {
+                        Text("User Email")
+                        Spacer()
+                        Text("\(store.user)")
+                    }
+                }
+                Button("Log Out") {
+                    send(.logoutButtonTapped)
+                }
             }
         }
-//        .navigationBarBackButtonHidden(true)
     }
 }

@@ -66,7 +66,6 @@ enum SignInError: AuthError {
     }
 }
 
-
 enum LogoutError: AuthError {
     case keychainError
     case otherError(String)
@@ -75,6 +74,29 @@ enum LogoutError: AuthError {
         switch self {
         case .keychainError:
             return "Error occurred when accessing the keychain"
+        case .otherError(let errorDescription):
+            return "Error: \(errorDescription)"
+        }
+    }
+}
+
+enum PasswordResetError: AuthError {
+    case userNotFound
+    case invalidEmail
+    case invalidRecipientEmail
+    case invalidSender
+    case otherError(String)
+    
+    var errorMessage: String {
+        switch self {
+        case .userNotFound:
+            return "User not found"
+        case .invalidEmail:
+            return "Email Address is badly formatted"
+        case .invalidRecipientEmail:
+            return "Invalid recipient email was sent"
+        case .invalidSender:
+            return "Invalid sender email is set"
         case .otherError(let errorDescription):
             return "Error: \(errorDescription)"
         }

@@ -22,7 +22,7 @@ struct AddPostView: View {
                 TextField("Title", text: $store.title, axis: .vertical)
                     .lineLimit(2)
             }
-            Section("Content*") {
+            Section("Content") {
                 TextField("Content", text: $store.content, axis: .vertical)
                     .lineLimit(5...10)
             }
@@ -31,7 +31,7 @@ struct AddPostView: View {
                     action: {
                         send(.searchGifButtonTapped)
                     }, label: {
-                        Text("Search GIF")
+                        Text("Select GIF")
                     }
                 )
                 if !store.gifContentUrl.isEmpty {
@@ -57,16 +57,26 @@ struct AddPostView: View {
                             },
                             label: {
                                 Text("Go Back")
+                                    .font(.system(size: 16))
+                                    .foregroundStyle(Color.white)
                             }
                         )
+                        .padding()
+                        .background(.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                         Button(
                             action: {
                                 send(.addPostButtonTapped)
                             },
                             label: {
                                 Text("Add Post")
+                                    .font(.system(size: 16))
+                                    .foregroundStyle(Color.white)
                             }
                         )
+                        .padding()
+                        .background(store.isNextPossible ? .blue : .gray)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                         .disabled(!store.isNextPossible)
                     }
                     .fullWidth()
@@ -79,8 +89,8 @@ struct AddPostView: View {
             VStack {
                 SearchGifView
             }
+            .presentationDragIndicator(.visible)
         }
-        .presentationDragIndicator(.visible)
     }
 }
 
@@ -95,7 +105,7 @@ extension AddPostView {
                     if !store.searchText.isEmpty {
                         Button(
                             action: {
-                                
+                                send(.clearSearchTextButtonTapped)
                             },
                             label: {
                                 Image(systemName: "xmark.circle.fill")

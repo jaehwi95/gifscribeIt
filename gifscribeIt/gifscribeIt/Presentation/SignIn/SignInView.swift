@@ -14,23 +14,8 @@ struct SignInView: View {
     @Bindable var store: StoreOf<SignInFeature>
     
     var body: some View {
-        NavigationStack(
-            path: $store.scope(state: \.path, action: \.path),
-            root: {
-                SignInViewBody
-                    .alert($store.scope(state: \.alert, action: \.alert))
-            },
-            destination: { store in
-                switch store.case {
-//                case .find(let store):
-//                    FindView(store: store)
-                case .signUp(let store):
-                    SignUpView(store: store)
-                case .main(let store):
-                    MainView(store: store)
-                }
-            }
-        )
+        SignInViewBody
+            .alert($store.scope(state: \.alert, action: \.alert))
     }
 }
 
@@ -77,9 +62,9 @@ extension SignInView {
                     .padding(.bottom, 80)
                     Button(
                         action: {
-//                            send(.forgotIDPasswordTapped)
+                            send(.forgotPasswordTapped)
                         }, label: {
-                            Text("Forgot ID / Password?")
+                            Text("Forgot Password?")
                         }
                     )
                     HStack(spacing: 0) {
@@ -92,10 +77,9 @@ extension SignInView {
                         })
                     }
                 }
-                .fullWidth()
             }
-            .fullWidth()
             .padding(.horizontal, 20)
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
