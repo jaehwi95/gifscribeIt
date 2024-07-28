@@ -140,7 +140,7 @@ extension AddPostView {
                                 ))
                             },
                             label: {
-                                GifImage(url: result.height100URL)
+                                GifView(url: result.height100URL, attributionScale: 0.5)
                                     .frame(height: 100)
                             }
                         )

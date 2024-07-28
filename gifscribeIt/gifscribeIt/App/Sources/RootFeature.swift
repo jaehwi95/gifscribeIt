@@ -61,15 +61,19 @@ struct RootFeature {
             case .path(.element(_, .main(.home(.view(.createPostButtonTapped))))):
                 state.path.append(.addPost(AddPostFeature.State()))
                 return .none
+            case .path(.element(_, .main(.setting(.logoutSuccess)))):
+                state.path.removeAll()
+                state.path.append(.signIn(SignInFeature.State()))
+                return .none
+            case .path(.element(_, .main(.setting(.deleteAccountSuccess)))):
+                state.path.removeAll()
+                state.path.append(.signIn(SignInFeature.State()))
+                return .none
             case .path(.element(_, .addPost(.view(.goBackButtonTapped)))):
                 state.path.removeLast()
                 return .none
             case .path(.element(_, .addPost(.addPostSuccess))):
                 state.path.removeLast()
-                return .none
-            case .path(.element(_, .main(.setting(.logoutSuccess)))):
-                state.path.removeAll()
-                state.path.append(.signIn(SignInFeature.State()))
                 return .none
             case .path:
                 return .none

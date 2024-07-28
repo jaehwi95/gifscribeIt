@@ -50,46 +50,51 @@ extension HomeView {
             ScrollView {
                 VStack(spacing: 40) {
                     ForEach(store.posts, id: \.self.id) { post in
-                        Button(
-                            action: {
-                                
-                            },
-                            label: {
-                                VStack(spacing: 20) {
-                                    Text("\(post.title)")
-                                        .font(.custom("TrebuchetMS-Bold", size: 20))
-                                    HStack(spacing: 20) {
-                                        GifImage(url: post.gifPreviewUrl)
-                                            .frame(height: 200)
-                                        VStack(spacing: 10) {
-                                            Button(
-                                                action: {
-                                                    send(.addPointToPost(post.id))
-                                                },
-                                                label: {
-                                                    Image(systemName: "arrowtriangle.up.fill")
-                                                        .font(.system(size: 40))
-                                                }
-                                            )
-                                            Text("\(post.point)")
-                                            Button(
-                                                action: {
-                                                    send(.minusPointToPost(post.id))
-                                                },
-                                                label: {
-                                                    Image(systemName: "arrowtriangle.down.fill")
-                                                        .font(.system(size: 40))
-                                                }
-                                            )
-                                            
-                                        }
-                                    }
-                                    if post.id != store.posts.last?.id {
-                                        Divider()
+                        ZStack(alignment: .topTrailing) {
+                            VStack(spacing: 20) {
+                                Text("\(post.title)")
+                                    .font(.custom("TrebuchetMS-Bold", size: 20))
+                                HStack(spacing: 20) {
+                                    GifView(url: post.gifPreviewUrl, attributionScale: 0.5)
+                                        .frame(height: 200)
+                                    VStack(spacing: 10) {
+                                        Button(
+                                            action: {
+                                                send(.addPointToPost(post.id))
+                                            },
+                                            label: {
+                                                Image(systemName: "arrowtriangle.up.fill")
+                                                    .font(.system(size: 40))
+                                            }
+                                        )
+                                        Text("\(post.point)")
+                                        Button(
+                                            action: {
+                                                send(.minusPointToPost(post.id))
+                                            },
+                                            label: {
+                                                Image(systemName: "arrowtriangle.down.fill")
+                                                    .font(.system(size: 40))
+                                            }
+                                        )
+                                        
                                     }
                                 }
+                                if post.id != store.posts.last?.id {
+                                    Divider()
+                                }
                             }
-                        )
+                            Button(
+                                action: {
+                                    send(.reportPostTapped)
+                                },
+                                label: {
+                                    Image(systemName: "exclamationmark")
+                                        .foregroundColor(Color(.systemRed))
+                                }
+                            )
+                        }
+                        
                     }
                 }
                 .padding(.horizontal, 20)
@@ -122,5 +127,7 @@ extension HomeView {
             }
              */
         }
+        .background(.mint.opacity(0.5))
+        .alert($store.scope(state: \.alert, action: \.alert))
     }
 }

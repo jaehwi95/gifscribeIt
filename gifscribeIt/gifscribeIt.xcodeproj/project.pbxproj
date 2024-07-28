@@ -13,6 +13,10 @@
 		1963B9A02C51534A00EE3978 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B99F2C51534A00EE3978 /* PostDetailView.swift */; };
 		1963B9A22C51535300EE3978 /* PostDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B9A12C51535300EE3978 /* PostDetailFeature.swift */; };
 		1963B9A82C52CEFB00EE3978 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B9A72C52CEFB00EE3978 /* View+.swift */; };
+		1963B9AB2C56B6D900EE3978 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1963B9AA2C56B6D900EE3978 /* Kingfisher */; };
+		1963B9AD2C56B6FC00EE3978 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1963B9AC2C56B6FB00EE3978 /* GoogleService-Info.plist */; };
+		1963B9AF2C56B96400EE3978 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B9AE2C56B96400EE3978 /* LoadingView.swift */; };
+		1963B9B12C56BA6E00EE3978 /* LoadingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B9B02C56BA6E00EE3978 /* LoadingWindow.swift */; };
 		196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0442C4D2F8100DD25DC /* SignUpView.swift */; };
 		196EA0472C4D2F8700DD25DC /* SignUpFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */; };
 		EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26537F2C48987C003B89D4 /* gifscribeItApp.swift */; };
@@ -59,6 +63,9 @@
 		1963B99F2C51534A00EE3978 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		1963B9A12C51535300EE3978 /* PostDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailFeature.swift; sourceTree = "<group>"; };
 		1963B9A72C52CEFB00EE3978 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		1963B9AC2C56B6FB00EE3978 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1963B9AE2C56B96400EE3978 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		1963B9B02C56BA6E00EE3978 /* LoadingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingWindow.swift; sourceTree = "<group>"; };
 		196EA0442C4D2F8100DD25DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFeature.swift; sourceTree = "<group>"; };
 		EB26537C2C48987C003B89D4 /* gifscribeIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gifscribeIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +106,7 @@
 				EB2653BB2C4F3854003B89D4 /* RxMoya in Frameworks */,
 				EB26545A2C510379003B89D4 /* FirebaseAuth in Frameworks */,
 				EB26538F2C489C45003B89D4 /* ComposableArchitecture in Frameworks */,
+				1963B9AB2C56B6D900EE3978 /* Kingfisher in Frameworks */,
 				EB2653B72C4F3854003B89D4 /* Moya in Frameworks */,
 				EB2653B92C4F3854003B89D4 /* ReactiveMoya in Frameworks */,
 				EB26545E2C510379003B89D4 /* FirebaseFirestore in Frameworks */,
@@ -222,6 +230,8 @@
 			children = (
 				1963B9972C514A9A00EE3978 /* GifImage.swift */,
 				1963B9A72C52CEFB00EE3978 /* View+.swift */,
+				1963B9AE2C56B96400EE3978 /* LoadingView.swift */,
+				1963B9B02C56BA6E00EE3978 /* LoadingWindow.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -229,6 +239,7 @@
 		EB26539B2C48B4E5003B89D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1963B9AC2C56B6FB00EE3978 /* GoogleService-Info.plist */,
 				EB2653832C48987E003B89D4 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -393,6 +404,7 @@
 				EB2654592C510379003B89D4 /* FirebaseAuth */,
 				EB26545B2C510379003B89D4 /* FirebaseDatabase */,
 				EB26545D2C510379003B89D4 /* FirebaseFirestore */,
+				1963B9AA2C56B6D900EE3978 /* Kingfisher */,
 			);
 			productName = gifscribeIt;
 			productReference = EB26537C2C48987C003B89D4 /* gifscribeIt.app */;
@@ -426,6 +438,7 @@
 				EB26538D2C489C45003B89D4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				EB2653B32C4F3854003B89D4 /* XCRemoteSwiftPackageReference "Moya" */,
 				EB2654582C510379003B89D4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1963B9A92C56B6D900EE3978 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = EB26537D2C48987C003B89D4 /* Products */;
 			projectDirPath = "";
@@ -443,6 +456,7 @@
 			files = (
 				EB2653872C48987E003B89D4 /* Preview Assets.xcassets in Resources */,
 				EB2653842C48987E003B89D4 /* Assets.xcassets in Resources */,
+				1963B9AD2C56B6FC00EE3978 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +488,7 @@
 				EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */,
 				EB2653D82C50E2F3003B89D4 /* HomeView.swift in Sources */,
 				EB2654682C51E933003B89D4 /* Post.swift in Sources */,
+				1963B9AF2C56B96400EE3978 /* LoadingView.swift in Sources */,
 				1963B9A82C52CEFB00EE3978 /* View+.swift in Sources */,
 				1963B9A02C51534A00EE3978 /* PostDetailView.swift in Sources */,
 				EB2653A02C48E3C7003B89D4 /* SignInView.swift in Sources */,
@@ -484,6 +499,7 @@
 				EB2653D42C50B6AF003B89D4 /* AuthError.swift in Sources */,
 				EB2653B22C4E54AB003B89D4 /* GiphyProvider.swift in Sources */,
 				EB2653C22C4F3C9B003B89D4 /* GiphyAPI.swift in Sources */,
+				1963B9B12C56BA6E00EE3978 /* LoadingWindow.swift in Sources */,
 				EB2653CD2C4F886F003B89D4 /* SearchResult.swift in Sources */,
 				EB2653DC2C50E302003B89D4 /* SettingView.swift in Sources */,
 			);
@@ -616,6 +632,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"gifscribeIt/Preview Content\"";
@@ -625,7 +642,6 @@
 				INFOPLIST_FILE = gifscribeIt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GifscribeIt;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -638,6 +654,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.jae.gifscribeIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -652,6 +669,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"gifscribeIt/Preview Content\"";
@@ -661,7 +679,6 @@
 				INFOPLIST_FILE = gifscribeIt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GifscribeIt;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -674,6 +691,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.jae.gifscribeIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -707,6 +725,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1963B9A92C56B6D900EE3978 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 		EB26538D2C489C45003B89D4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -734,6 +760,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1963B9AA2C56B6D900EE3978 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1963B9A92C56B6D900EE3978 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		EB26538E2C489C45003B89D4 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EB26538D2C489C45003B89D4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;

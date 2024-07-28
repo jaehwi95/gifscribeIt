@@ -16,6 +16,7 @@ struct FindFeature {
     struct State: Equatable {
         @Presents var alert: AlertState<Action.Alert>?
         var email: String = ""
+        var isLoading: Bool = false
     }
     
     enum Action: Equatable, ViewAction {
@@ -39,17 +40,20 @@ struct FindFeature {
         Reduce { state, action in
             switch action {
             case .passwordResetFail(let errorMessage):
+                state.isLoading = false
                 state.alert = AlertState {
                     TextState("\(errorMessage)")
                 }
                 return .none
             case .passwordResetSuccess(let email):
+                state.isLoading = false
                 state.alert = AlertState(
                     title: TextState("Password Reset email sent to: \(email)"),
                     dismissButton: .default(TextState("Confirm"), action: .send(.navigateToSignIn))
                 )
                 return .none
             case .view(.resetPasswordButtonTapped):
+                state.isLoading = true
                 return .run {
                     [email = state.email] send in
                     await send(self.resetPassword(email: email))
@@ -57,6 +61,7 @@ struct FindFeature {
             case .view(.binding):
                 return .none
             case .alert:
+                state.alert = nil
                 return .none
             }
         }

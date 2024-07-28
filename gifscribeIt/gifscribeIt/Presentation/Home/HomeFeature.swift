@@ -15,17 +15,23 @@ struct HomeFeature {
     
     @ObservableState
     struct State: Equatable {
+        @Presents var alert: AlertState<Action.Alert>?
         var points: Int = 0
         var selectedCategory: Category = .hot
         var posts: [Post] = []
     }
     
     enum Action: Equatable, ViewAction {
+        case alert(PresentationAction<Alert>)
         case setPostsList([Post])
         case getAllPostsFail
         case pointOperationFail
         case updatePosts
         case view(View)
+        
+        enum Alert: Equatable {
+            case confirmReport
+        }
         
         @CasePathable
         enum View: Equatable, BindableAction {
@@ -34,7 +40,7 @@ struct HomeFeature {
             case createPostButtonTapped
             case addPointToPost(String?)
             case minusPointToPost(String?)
-            case postTapped
+            case reportPostTapped
         }
     }
     
@@ -73,7 +79,13 @@ struct HomeFeature {
                 return .run { send in
                     await send(self.minusPoint(id: id))
                 }
-            case .view(.postTapped):
+            case .view(.reportPostTapped):
+                state.alert = AlertState(
+                    title: TextState("Report Post?"),
+                    message: TextState("If you report the post, we will take an appropriate action after a thorough review."),
+                    primaryButton: .default(TextState("Confirm"), action: .send(.confirmReport)),
+                    secondaryButton: .cancel(TextState("Cancel"))
+                )
                 return .none
             case .view(.binding(\.selectedCategory)):
                 switch state.selectedCategory {
@@ -86,6 +98,9 @@ struct HomeFeature {
                 }
                 return .none
             case .view(.binding):
+                return .none
+            case .alert:
+                state.alert = nil
                 return .none
             }
         }

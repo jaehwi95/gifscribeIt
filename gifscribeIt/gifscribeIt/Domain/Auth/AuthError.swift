@@ -102,3 +102,20 @@ enum PasswordResetError: AuthError {
         }
     }
 }
+
+enum DeleteAccountError: AuthError {
+    case disabledAccount
+    case reauthenticateNeeded
+    case otherError(String)
+    
+    var errorMessage: String {
+        switch self {
+        case .disabledAccount:
+            return "Account is disabled."
+        case .reauthenticateNeeded:
+            return "Reauthentication needed, please logout and signin and then try again."
+        case .otherError(let errorDescription):
+            return "Error: \(errorDescription)"
+        }
+    }
+}

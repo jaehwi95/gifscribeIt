@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "Poweredby_100px-White_VertLogo 1.png",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Poweredby_100px-Black_VertLogo.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

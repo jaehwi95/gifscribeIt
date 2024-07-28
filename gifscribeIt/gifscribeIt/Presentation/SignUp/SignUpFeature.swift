@@ -22,6 +22,9 @@ struct SignUpFeature {
         var isSignUpPossible: Bool {
             !password.isEmpty && (password == confirmPassword)
         }
+        var isLoading: Bool = false
+        var isShowPassword: Bool = false
+        var isShowConfirmPassword: Bool = false
     }
     
     enum Action: ViewAction, Equatable {
@@ -39,6 +42,8 @@ struct SignUpFeature {
         enum View: BindableAction, Sendable, Equatable {
             case binding(BindingAction<State>)
             case signUpButtonTapped
+            case toggleShowPasswordButtonTapped
+            case toggleShowConfirmPasswordButtonTapped
         }
     }
     
@@ -47,11 +52,13 @@ struct SignUpFeature {
         Reduce { state, action in
             switch action {
             case .signUpFail(let errorMessage):
+                state.isLoading = false
                 state.alert = AlertState {
                     TextState("\(errorMessage)")
                 }
                 return .none
             case .signUpSuccess(let email):
+                state.isLoading = false
                 state.alert = AlertState(
                     title: TextState("Sign Up Success"),
                     message: TextState("Account created: \(email). Please Login"),
@@ -59,6 +66,7 @@ struct SignUpFeature {
                 )
                 return .none
             case .logoutFail(let errorMessage):
+                state.isLoading = false
                 state.alert = AlertState {
                     TextState("\(errorMessage)")
                 }
@@ -66,6 +74,7 @@ struct SignUpFeature {
             case .view(.signUpButtonTapped):
                 let isAllTextFieldsFilled = [state.email, state.password, state.confirmPassword].allSatisfy { !$0.isEmpty }
                 if isAllTextFieldsFilled {
+                    state.isLoading = true
                     return .run {
                         [email = state.email, password = state.password] send in
                         await send(self.signUp(email: email, password: password))
@@ -73,9 +82,16 @@ struct SignUpFeature {
                 } else {
                     return .send(.signUpFail("Please check your fields again"))
                 }
+            case .view(.toggleShowPasswordButtonTapped):
+                state.isShowPassword.toggle()
+                return .none
+            case .view(.toggleShowConfirmPasswordButtonTapped):
+                state.isShowConfirmPassword.toggle()
+                return .none
             case .view(.binding):
                 return .none
             case .alert:
+                state.alert = nil
                 return .none
             }
         }

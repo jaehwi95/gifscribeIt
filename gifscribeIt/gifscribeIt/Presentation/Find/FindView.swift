@@ -50,6 +50,7 @@ struct FindView: View {
             }
             .padding(.horizontal, 20)
         }
+        .loading(isLoading: store.isLoading)
         .alert($store.scope(state: \.alert, action: \.alert))
     }
 }

@@ -14,6 +14,7 @@ struct AuthClient {
     var signIn: (_ email: String, _ password: String) async -> Result<String, SignInError>
     var logout: () -> Result<Void, LogoutError>
     var resetPassword: (_ email: String) async -> Result<String, PasswordResetError>
+    var deleteAccount: () async -> Result<Void, DeleteAccountError>
 }
 
 extension DependencyValues {
@@ -104,6 +105,22 @@ extension AuthClient: DependencyKey {
                     return .failure(.invalidRecipientEmail)
                 case .invalidSender:
                     return .failure(.invalidSender)
+                default:
+                    return .failure(.otherError(errorCode.localizedDescription))
+                }
+            }
+        },
+        deleteAccount: {
+            do {
+                try await Auth.auth().currentUser?.delete()
+                return .success(())
+            } catch {
+                let errorCode = AuthErrorCode(_nsError: error as NSError)
+                switch errorCode.code {
+                case .operationNotAllowed:
+                    return .failure(.disabledAccount)
+                case .requiresRecentLogin:
+                    return .failure(.reauthenticateNeeded)
                 default:
                     return .failure(.otherError(errorCode.localizedDescription))
                 }

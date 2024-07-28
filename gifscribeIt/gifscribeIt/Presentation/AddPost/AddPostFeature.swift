@@ -107,6 +107,7 @@ struct AddPostFeature {
             case .view(.binding):
                 return .none
             case .alert:
+                state.alert = nil
                 return .none
             }
         }

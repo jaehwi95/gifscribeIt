@@ -18,6 +18,8 @@ struct SignInFeature {
         @Presents var alert: AlertState<Action.Alert>?
         var email: String = ""
         var password: String = ""
+        var isLoading: Bool = false
+        var isShowPassword: Bool = false
     }
     
     enum Action: Equatable, ViewAction {
@@ -33,6 +35,7 @@ struct SignInFeature {
             case loginButtonTapped
             case forgotPasswordTapped
             case createAccountTapped
+            case toggleShowPasswordButtonTapped
         }
     }
     
@@ -41,21 +44,27 @@ struct SignInFeature {
         Reduce { state, action in
             switch action {
             case .loginFail(let errorMessage):
+                state.isLoading = false
                 state.alert = AlertState {
                     TextState("\(errorMessage)")
                 }
                 return .none
             case .loginSuccess:
+                state.isLoading = false
                 return .none
             case .view(.loginButtonTapped):
                 if state.email.isEmpty || state.password.isEmpty {
                     return .send(.loginFail("Please input Email / Password"))
                 } else {
-                    return .run { 
+                    state.isLoading = true
+                    return .run {
                         [email = state.email, password = state.password] send in
                         await send(self.signIn(email: email, password: password))
                     }
                 }
+            case .view(.toggleShowPasswordButtonTapped):
+                state.isShowPassword.toggle()
+                return .none
             case .view(.forgotPasswordTapped):
                 return .none
             case .view(.createAccountTapped):
@@ -63,6 +72,7 @@ struct SignInFeature {
             case .view(.binding):
                 return .none
             case .alert:
+                state.alert = nil
                 return .none
             }
         }
