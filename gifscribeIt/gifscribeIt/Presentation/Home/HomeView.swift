@@ -55,7 +55,7 @@ extension HomeView {
                                 Text("\(post.title)")
                                     .font(.custom("TrebuchetMS-Bold", size: 20))
                                 HStack(spacing: 20) {
-                                    GifView(url: post.gifPreviewUrl, attributionScale: 0.5)
+                                    GifImageView(url: post.gifPreviewUrl, attributionScale: 0.5)
                                         .frame(height: 200)
                                     VStack(spacing: 10) {
                                         Button(

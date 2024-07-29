@@ -35,7 +35,7 @@ struct AddPostView: View {
                     }
                 )
                 if !store.gifContentUrl.isEmpty {
-                    GifImage(url: store.gifContentUrl)
+                    GifImageView(url: store.gifContentUrl, attributionScale: 0.5)
                         .frame(height: 200)
                 }
             }
@@ -136,11 +136,11 @@ extension AddPostView {
                             action: {
                                 send(.gifItemTapped(
                                     result.height200DownsampledURL,
-                                    result.originalURL
+                                    result.height200URL
                                 ))
                             },
                             label: {
-                                GifView(url: result.height100URL, attributionScale: 0.5)
+                                GifImageView(url: result.height100URL, attributionScale: 0.5)
                                     .frame(height: 100)
                             }
                         )
