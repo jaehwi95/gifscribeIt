@@ -15,24 +15,23 @@ struct HomeFeature {
     
     @ObservableState
     struct State: Equatable {
-        var path = StackState<Path.State>()
+        @Presents var alert: AlertState<Action.Alert>?
         var points: Int = 0
         var selectedCategory: Category = .hot
         var posts: [Post] = []
     }
     
-    @Reducer(state: .equatable, action: .equatable)
-    enum Path {
-        case addPost(AddPostFeature)
-        case postDetail(PostDetailFeature)
-    }
-    
     enum Action: Equatable, ViewAction {
-        case path(StackActionOf<Path>)
+        case alert(PresentationAction<Alert>)
         case setPostsList([Post])
         case getAllPostsFail
+        case pointOperationFail
         case updatePosts
         case view(View)
+        
+        enum Alert: Equatable {
+            case confirmReport
+        }
         
         @CasePathable
         enum View: Equatable, BindableAction {
@@ -40,7 +39,8 @@ struct HomeFeature {
             case binding(BindingAction<State>)
             case createPostButtonTapped
             case addPointToPost(String?)
-            case postTapped
+            case minusPointToPost(String?)
+            case reportPostTapped
         }
     }
     
@@ -49,9 +49,18 @@ struct HomeFeature {
         Reduce { state, action in
             switch action {
             case .setPostsList(let posts):
-                state.posts = sortPostsByPoints(posts: posts)
+                switch state.selectedCategory {
+                case .hot:
+                    state.posts = sortPostsByPointsDecreasing(posts: posts)
+                case .new:
+                    state.posts = sortPostsByDate(posts: posts)
+                case .debated:
+                    state.posts = sortPostsByPointsIncreasing(posts: posts)
+                }
                 return .none
             case .getAllPostsFail:
+                return .none
+            case .pointOperationFail:
                 return .none
             case .updatePosts:
                 return .send(.view(.onAppear))
@@ -60,24 +69,41 @@ struct HomeFeature {
                     await send(self.getAllPosts())
                 }
             case .view(.createPostButtonTapped):
-                state.path.append(.addPost(AddPostFeature.State()))
+                print("add post")
                 return .none
             case .view(.addPointToPost(let id)):
                 return .run { send in
                     await send(self.addPoint(id: id))
                 }
-            case .view(.postTapped):
+            case .view(.minusPointToPost(let id)):
+                return .run { send in
+                    await send(self.minusPoint(id: id))
+                }
+            case .view(.reportPostTapped):
+                state.alert = AlertState(
+                    title: TextState("Report Post?"),
+                    message: TextState("If you report the post, we will take an appropriate action after a thorough review."),
+                    primaryButton: .default(TextState("Confirm"), action: .send(.confirmReport)),
+                    secondaryButton: .cancel(TextState("Cancel"))
+                )
+                return .none
+            case .view(.binding(\.selectedCategory)):
+                switch state.selectedCategory {
+                case .hot:
+                    state.posts = sortPostsByPointsDecreasing(posts: state.posts)
+                case .new:
+                    state.posts = sortPostsByDate(posts: state.posts)
+                case .debated:
+                    state.posts = sortPostsByPointsIncreasing(posts: state.posts)
+                }
                 return .none
             case .view(.binding):
                 return .none
-            case .path(.element(_, .addPost(.view(.goBackButtonTapped)))):
-                let _ = state.path.popLast()
-                return .none
-            case .path:
+            case .alert:
+                state.alert = nil
                 return .none
             }
         }
-        .forEach(\.path, action: \.path)
     }
 }
 
@@ -87,7 +113,7 @@ extension HomeFeature {
         switch result {
         case .success(let posts):
             return .setPostsList(posts)
-        case .failure(let failure):
+        case .failure(_):
             return .getAllPostsFail
         }
     }
@@ -100,15 +126,38 @@ extension HomeFeature {
         switch result {
         case .success:
             return .updatePosts
-        case .failure(let failure):
+        case .failure(_):
+            return .pointOperationFail
+        }
+    }
+    
+    private func minusPoint(id: String?) async -> Action {
+        guard let id = id else {
             return .getAllPostsFail
+        }
+        let result = await postClient.subtractPointFromPost(id)
+        switch result {
+        case .success:
+            return .updatePosts
+        case .failure(_):
+            return .pointOperationFail
         }
     }
 }
 
 extension HomeFeature {
-    private func sortPostsByPoints(posts: [Post]) -> [Post] {
+    private func sortPostsByPointsDecreasing(posts: [Post]) -> [Post] {
         let sortedList = posts.sorted(by: { $0.point > $1.point })
+        return sortedList
+    }
+    
+    private func sortPostsByDate(posts: [Post]) -> [Post] {
+        let sortedList = posts.sorted(by: { $0.date > $1.date })
+        return sortedList
+    }
+    
+    private func sortPostsByPointsIncreasing(posts: [Post]) -> [Post] {
+        let sortedList = posts.sorted(by: { $0.point < $1.point })
         return sortedList
     }
 }

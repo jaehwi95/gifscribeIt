@@ -9,6 +9,25 @@ import Foundation
 import WebKit
 import SwiftUI
 
+struct GifView: View {
+    private let url: String
+    private let attributionScale: Double
+    
+    init(url: String, attributionScale: Double) {
+        self.url = url
+        self.attributionScale = attributionScale
+    }
+    
+    var body: some View {
+        ZStack(alignment: .bottomTrailing) {
+            GifImage(url: url)
+            Image("giphyAttribution")
+                .resizable()
+                .frame(width: (100*attributionScale), height: (27*attributionScale))
+        }
+    }
+}
+
 struct GifImage: UIViewRepresentable {
     private let url: String
     
@@ -29,6 +48,9 @@ struct GifImage: UIViewRepresentable {
                 webView.scrollView.isScrollEnabled = false
             }
         }
+        webView.isOpaque = false
+        webView.backgroundColor = UIColor.clear
+        webView.scrollView.backgroundColor = UIColor.clear
         return webView
     }
     

@@ -28,7 +28,7 @@ struct AddPostFeature {
         var date: Date = .now
         
         var isNextPossible: Bool {
-            return [title, content, gifPreviewUrl, gifContentUrl, user].allSatisfy { !$0.isEmpty }
+            return [title, gifPreviewUrl, gifContentUrl, user].allSatisfy { !$0.isEmpty }
         }
         var isSheetPresented = false
         var searchText = ""
@@ -55,6 +55,7 @@ struct AddPostFeature {
             case addPostButtonTapped
             case searchGifButtonTapped
             case searchButtonTapped
+            case clearSearchTextButtonTapped
             case gifItemTapped(String, String)
         }
     }
@@ -96,6 +97,9 @@ struct AddPostFeature {
                 return .run { [keyword = state.searchText] send in
                     await send(self.searchGif(keyword: "\(keyword)"))
                 }
+            case .view(.clearSearchTextButtonTapped):
+                state.searchText = ""
+                return .none
             case .view(.gifItemTapped(let previewUrl, let contentUrl)):
                 state.gifPreviewUrl = previewUrl
                 state.gifContentUrl = contentUrl
@@ -103,6 +107,7 @@ struct AddPostFeature {
             case .view(.binding):
                 return .none
             case .alert:
+                state.alert = nil
                 return .none
             }
         }
@@ -124,7 +129,7 @@ extension AddPostFeature {
         switch result {
         case .success:
             return .addPostSuccess
-        case .failure(let failure):
+        case .failure(_):
             return .addPostFailure
         }
     }
@@ -134,7 +139,7 @@ extension AddPostFeature {
         switch result {
         case .success(let result):
             return .setSearchResultList(result.gifs)
-        case .failure(let failure):
+        case .failure(_):
             return .searchFail
         }
     }

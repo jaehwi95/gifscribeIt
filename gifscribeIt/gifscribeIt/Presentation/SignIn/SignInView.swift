@@ -14,23 +14,8 @@ struct SignInView: View {
     @Bindable var store: StoreOf<SignInFeature>
     
     var body: some View {
-        NavigationStack(
-            path: $store.scope(state: \.path, action: \.path),
-            root: {
-                SignInViewBody
-                    .alert($store.scope(state: \.alert, action: \.alert))
-            },
-            destination: { store in
-                switch store.case {
-//                case .find(let store):
-//                    FindView(store: store)
-                case .signUp(let store):
-                    SignUpView(store: store)
-                case .main(let store):
-                    MainView(store: store)
-                }
-            }
-        )
+        SignInViewBody
+            .alert($store.scope(state: \.alert, action: \.alert))
     }
 }
 
@@ -55,9 +40,25 @@ extension SignInView {
                 .underlined(color: .purple)
                 HStack {
                     Image(systemName: "key")
-                    TextField("Password", text: $store.password)
-                        .font(.custom("TrebuchetMS", size: 20))
-                        .padding()
+                    ZStack(alignment: .trailing) {
+                        if store.isShowPassword {
+                            TextField("Password", text: $store.password)
+                                .font(.custom("TrebuchetMS", size: 20))
+                                .padding()
+                        } else {
+                            SecureField("Password", text: $store.password)
+                                .font(.custom("TrebuchetMS", size: 20))
+                                .padding()
+                        }
+                        Button(
+                            action: {
+                                send(.toggleShowPasswordButtonTapped)
+                            },
+                            label: {
+                                Image(systemName: store.isShowPassword ? "eye" : "eye.slash")
+                            }
+                        )
+                    }
                 }
                 .underlined(color: .purple)
                 VStack(spacing: 40) {
@@ -77,9 +78,9 @@ extension SignInView {
                     .padding(.bottom, 80)
                     Button(
                         action: {
-//                            send(.forgotIDPasswordTapped)
+                            send(.forgotPasswordTapped)
                         }, label: {
-                            Text("Forgot ID / Password?")
+                            Text("Forgot Password?")
                         }
                     )
                     HStack(spacing: 0) {
@@ -92,10 +93,10 @@ extension SignInView {
                         })
                     }
                 }
-                .fullWidth()
             }
-            .fullWidth()
             .padding(.horizontal, 20)
         }
+        .loading(isLoading: store.isLoading)
+        .navigationBarBackButtonHidden(true)
     }
 }

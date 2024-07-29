@@ -4,5 +4,12 @@
 <dict>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<string>NO</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
 </dict>
 </plist>

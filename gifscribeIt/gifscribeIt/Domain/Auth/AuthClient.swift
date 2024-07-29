@@ -13,6 +13,8 @@ struct AuthClient {
     var signUp: (_ email: String, _ password: String) async -> Result<String, SignUpError>
     var signIn: (_ email: String, _ password: String) async -> Result<String, SignInError>
     var logout: () -> Result<Void, LogoutError>
+    var resetPassword: (_ email: String) async -> Result<String, PasswordResetError>
+    var deleteAccount: () async -> Result<Void, DeleteAccountError>
 }
 
 extension DependencyValues {
@@ -83,6 +85,42 @@ extension AuthClient: DependencyKey {
                 switch errorCode.code {
                 case .keychainError:
                     return .failure(.keychainError)
+                default:
+                    return .failure(.otherError(errorCode.localizedDescription))
+                }
+            }
+        },
+        resetPassword: { email in
+            do {
+                try await Auth.auth().sendPasswordReset(withEmail: email)
+                return .success(email)
+            } catch {
+                let errorCode = AuthErrorCode(_nsError: error as NSError)
+                switch errorCode.code {
+                case .userNotFound:
+                    return .failure(.userNotFound)
+                case .invalidEmail:
+                    return .failure(.invalidEmail)
+                case .invalidRecipientEmail:
+                    return .failure(.invalidRecipientEmail)
+                case .invalidSender:
+                    return .failure(.invalidSender)
+                default:
+                    return .failure(.otherError(errorCode.localizedDescription))
+                }
+            }
+        },
+        deleteAccount: {
+            do {
+                try await Auth.auth().currentUser?.delete()
+                return .success(())
+            } catch {
+                let errorCode = AuthErrorCode(_nsError: error as NSError)
+                switch errorCode.code {
+                case .operationNotAllowed:
+                    return .failure(.disabledAccount)
+                case .requiresRecentLogin:
+                    return .failure(.reauthenticateNeeded)
                 default:
                     return .failure(.otherError(errorCode.localizedDescription))
                 }

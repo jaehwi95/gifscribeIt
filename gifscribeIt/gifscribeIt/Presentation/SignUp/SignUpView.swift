@@ -39,16 +39,48 @@ extension SignUpView {
                 .underlined(color: .purple)
                 HStack {
                     Image(systemName: "key")
-                    TextField("Password", text: $store.password)
-                        .font(.custom("TrebuchetMS", size: 20))
-                        .padding()
+                    ZStack(alignment: .trailing) {
+                        if store.isShowPassword {
+                            TextField("Password", text: $store.password)
+                                .font(.custom("TrebuchetMS", size: 20))
+                                .padding()
+                        } else {
+                            SecureField("Password", text: $store.password)
+                                .font(.custom("TrebuchetMS", size: 20))
+                                .padding()
+                        }
+                        Button(
+                            action: {
+                                send(.toggleShowPasswordButtonTapped)
+                            },
+                            label: {
+                                Image(systemName: store.isShowPassword ? "eye" : "eye.slash")
+                            }
+                        )
+                    }
                 }
                 .underlined(color: .purple)
                 HStack {
                     Image(systemName: "key")
-                    TextField("Confirm Password", text: $store.confirmPassword)
-                        .font(.custom("TrebuchetMS", size: 20))
-                        .padding()
+                    ZStack(alignment: .trailing) {
+                        if store.isShowConfirmPassword {
+                            TextField("Confirm Password", text: $store.confirmPassword)
+                                .font(.custom("TrebuchetMS", size: 20))
+                                .padding()
+                        } else {
+                            SecureField("Confirm Password", text: $store.confirmPassword)
+                                .font(.custom("TrebuchetMS", size: 20))
+                                .padding()
+                        }
+                        Button(
+                            action: {
+                                send(.toggleShowConfirmPasswordButtonTapped)
+                            },
+                            label: {
+                                Image(systemName: store.isShowConfirmPassword ? "eye" : "eye.slash")
+                            }
+                        )
+                    }
                 }
                 .underlined(color: .purple)
                 Button(
@@ -68,5 +100,6 @@ extension SignUpView {
             }
             .padding(.horizontal, 20)
         }
+        .loading(isLoading: store.isLoading)
     }
 }

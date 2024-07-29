@@ -54,18 +54,6 @@ struct Post: Codable, Equatable, DictionaryCodable {
         self.user = user
         self.date = date
     }
-    
-    
-    /// sample struct
-    init() {
-        self.title = "Test Title"
-        self.content = "Test Contents"
-        self.point = 77
-        self.gifPreviewUrl = "https://media2.giphy.com/media/MDJ9IbxxvDUQM/200_d.gif?cid=24c7c7bci45bku8uibsm9q602xbjah66zaek412se628r00a&ep=v1_gifs_search&rid=200_d.gif&ct=g"
-        self.gifContentUrl = "https://media2.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif?cid=24c7c7bci45bku8uibsm9q602xbjah66zaek412se628r00a&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-        self.user = "jaehwi95@gmail.com"
-        self.date = Date.now.timeIntervalSince1970
-    }
 }
 
 extension Post {
