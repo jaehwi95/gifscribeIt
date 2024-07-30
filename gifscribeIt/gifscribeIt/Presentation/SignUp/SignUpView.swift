@@ -10,11 +10,13 @@ import ComposableArchitecture
 
 @ViewAction(for: SignUpFeature.self)
 struct SignUpView: View {
-    @Bindable var store: StoreOf<SignUpFeature>
+    @Perception.Bindable var store: StoreOf<SignUpFeature>
     
     var body: some View {
-        SignUpViewBody
-            .alert($store.scope(state: \.alert, action: \.alert))
+        WithPerceptionTracking {
+            SignUpViewBody
+                .alert($store.scope(state: \.alert, action: \.alert))
+        }
     }
 }
 

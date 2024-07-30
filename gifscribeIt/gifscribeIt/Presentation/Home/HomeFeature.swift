@@ -8,6 +8,7 @@
 import Foundation
 import ComposableArchitecture
 import FirebaseFirestore
+import FirebaseAuth
 
 @Reducer
 struct HomeFeature {
@@ -27,10 +28,12 @@ struct HomeFeature {
         case getAllPostsFail
         case pointOperationFail
         case updatePosts
+        case reportPostFail
+        case reportPostSuccess
         case view(View)
         
         enum Alert: Equatable {
-            case confirmReport
+            case confirmReport(String?)
         }
         
         @CasePathable
@@ -40,7 +43,7 @@ struct HomeFeature {
             case createPostButtonTapped
             case addPointToPost(String?)
             case minusPointToPost(String?)
-            case reportPostTapped
+            case reportPostTapped(String?)
         }
     }
     
@@ -64,6 +67,10 @@ struct HomeFeature {
                 return .none
             case .updatePosts:
                 return .send(.view(.onAppear))
+            case .reportPostFail:
+                return .none
+            case .reportPostSuccess:
+                return .none
             case .view(.onAppear):
                 return .run { send in
                     await send(self.getAllPosts())
@@ -79,11 +86,11 @@ struct HomeFeature {
                 return .run { send in
                     await send(self.minusPoint(id: id))
                 }
-            case .view(.reportPostTapped):
+            case .view(.reportPostTapped(let id)):
                 state.alert = AlertState(
                     title: TextState("Report Post?"),
-                    message: TextState("If you report the post, we will take an appropriate action after a thorough review."),
-                    primaryButton: .default(TextState("Confirm"), action: .send(.confirmReport)),
+                    message: TextState("If you report the post, we will take an appropriate action after a thorough review in 24 hours."),
+                    primaryButton: .default(TextState("Confirm"), action: .send(.confirmReport(id))),
                     secondaryButton: .cancel(TextState("Cancel"))
                 )
                 return .none
@@ -99,6 +106,11 @@ struct HomeFeature {
                 return .none
             case .view(.binding):
                 return .none
+            case .alert(.presented(.confirmReport(let id))):
+                state.alert = nil
+                return .run { send in
+                    await send(self.reportPost(id: id, reportCategory: "Inappropriate"))
+                }
             case .alert:
                 state.alert = nil
                 return .none
@@ -141,6 +153,22 @@ extension HomeFeature {
             return .updatePosts
         case .failure(_):
             return .pointOperationFail
+        }
+    }
+    
+    private func reportPost(id: String?, reportCategory: String) async -> Action {
+        guard let id = id else {
+            return .getAllPostsFail
+        }
+        guard let currentUserEmail = Auth.auth().currentUser?.email else {
+            return .getAllPostsFail
+        }
+        let result = await postClient.reportPost(id, reportCategory, currentUserEmail)
+        switch result {
+        case .success:
+            return .reportPostSuccess
+        case .failure(_):
+            return .reportPostFail
         }
     }
 }

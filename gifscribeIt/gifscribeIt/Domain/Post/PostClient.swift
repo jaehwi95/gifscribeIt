@@ -15,6 +15,7 @@ struct PostClient {
     var deletePost: (_ id: String) -> Void
     var addPointFromPost: (_ id: String) async -> Result<Void, PostError>
     var subtractPointFromPost: (_ id: String) async -> Result<Void, PostError>
+    var reportPost: (_ id: String, _ reportCategory: String, _ email: String) async -> Result<Void, PostError>
     /// TODO: edit post
 //    var editPost: (_ post: Post) -> Result<Void, PostError>
 }
@@ -98,6 +99,29 @@ extension PostClient: DependencyKey {
                     try await ref.child("\(dbPath)/\(id)")
                         .updateChildValues([
                             "point": (currentPoint - 1)
+                        ])
+                    return .success(())
+                } catch {
+                    return .failure(.otherError(error.localizedDescription))
+                }
+            },
+            reportPost: { id, reportCategory, email in
+                do {
+                    let snapshot = try await ref.child("\(dbPath)/\(id)").getData()
+                    guard let resultDictionary = snapshot.value as? [String: Any] else {
+                        return .failure(.parseError)
+                    }
+                    
+                    guard let newReport = try Report(
+                        reportCategory: reportCategory,
+                        reportUser: email
+                    ).encode() as? [AnyHashable: Any] else {
+                        return .failure(.parseError)
+                    }
+                    
+                    try await ref.child("\(dbPath)/\(id)")
+                        .updateChildValues([
+                            "report": newReport
                         ])
                     return .success(())
                 } catch {

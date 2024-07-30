@@ -10,25 +10,27 @@ import SwiftUI
 import ComposableArchitecture
 
 struct MainView: View {
-    @Bindable var store: StoreOf<MainFeature>
+    @Perception.Bindable var store: StoreOf<MainFeature>
     
     var body: some View {
-        TabView(selection: $store.currentTab.sending(\.selectTab)) {
-            HomeView(
-                store: store.scope(state: \.home, action: \.home)
-            )
-            .tag(MainFeature.Tab.home)
-            .tabItem {
-                Image(systemName: "house")
+        WithPerceptionTracking {
+            TabView(selection: $store.currentTab.sending(\.selectTab)) {
+                HomeView(
+                    store: store.scope(state: \.home, action: \.home)
+                )
+                .tag(MainFeature.Tab.home)
+                .tabItem {
+                    Image(systemName: "house")
+                }
+                SettingView(
+                    store: store.scope(state: \.setting, action: \.setting)
+                )
+                .tag(MainFeature.Tab.setting)
+                .tabItem {
+                    Image(systemName: "gearshape")
+                }
             }
-            SettingView(
-                store: store.scope(state: \.setting, action: \.setting)
-            )
-            .tag(MainFeature.Tab.setting)
-            .tabItem {
-                Image(systemName: "gearshape")
-            }
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
     }
 }

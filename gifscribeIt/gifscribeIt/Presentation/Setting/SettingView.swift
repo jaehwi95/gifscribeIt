@@ -11,35 +11,39 @@ import ComposableArchitecture
 
 @ViewAction(for: SettingFeature.self)
 struct SettingView: View {
-    @Bindable var store: StoreOf<SettingFeature>
+    @Perception.Bindable var store: StoreOf<SettingFeature>
     
     var body: some View {
-        VStack(spacing: 40) {
-            List {
-                Section(header: Text("User Information")) {
-                    HStack {
-                        Text("User Email")
-                        Spacer()
-                        Text("\(store.user)")
-                    }
-                }
-                Section {
-                    Button("Log Out") {
-                        send(.logoutButtonTapped)
-                    }
-                }
-                Section {
-                    Button("Delete Account") {
-                        send(.showDeleteAccountTapped)
-                    }
-                }
-            }
-        }
-        .sheet(isPresented: $store.isSheetPresented.sending(\.setSheet)) {
+        WithPerceptionTracking {
             VStack {
-                DeleteAccountView
+                List {
+                    Section(header: Text("User Information")) {
+                        HStack {
+                            Text("User Email")
+                            Spacer()
+                            Text("\(store.user)")
+                        }
+                    }
+                    Section {
+                        Button("Log Out") {
+                            send(.logoutButtonTapped)
+                        }
+                    }
+                    Section {
+                        Button("Delete Account") {
+                            send(.showDeleteAccountTapped)
+                        }
+                    }
+                }
+                Text("Questions or Inquiries? Please contact: jaehwi95@gmail.com")
+                    .font(.system(size: 12))
             }
-            .presentationDragIndicator(.visible)
+            .sheet(isPresented: $store.isSheetPresented.sending(\.setSheet)) {
+                VStack {
+                    DeleteAccountView
+                }
+                .presentationDragIndicator(.visible)
+            }
         }
     }
 }

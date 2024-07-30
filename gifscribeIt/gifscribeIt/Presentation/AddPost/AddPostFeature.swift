@@ -123,7 +123,8 @@ extension AddPostFeature {
             gifPreviewUrl: gifPreviewUrl,
             gifContentUrl: gifContentUrl,
             user: user,
-            date: Date.now.timeIntervalSince1970
+            date: Date.now.timeIntervalSince1970,
+            report: Report(reportCategory: "InAppropriate", reportUser: Auth.auth().currentUser?.email ?? "")
         )
         let result = postClient.addPost(newPost)
         switch result {

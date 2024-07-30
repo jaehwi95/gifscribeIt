@@ -16,6 +16,7 @@ struct Post: Codable, Equatable, DictionaryCodable {
     let gifContentUrl: String
     let user: String
     let date: Double
+    let report: Report?
     
     init(
         title: String,
@@ -24,7 +25,8 @@ struct Post: Codable, Equatable, DictionaryCodable {
         gifPreviewUrl: String,
         gifContentUrl: String,
         user: String,
-        date: Double
+        date: Double,
+        report: Report?
     ) {
         self.title = title
         self.content = content
@@ -33,6 +35,7 @@ struct Post: Codable, Equatable, DictionaryCodable {
         self.gifContentUrl = gifContentUrl
         self.user = user
         self.date = date
+        self.report = report
     }
     
     init(
@@ -43,7 +46,8 @@ struct Post: Codable, Equatable, DictionaryCodable {
         gifPreviewUrl: String,
         gifContentUrl: String,
         user: String,
-        date: Double
+        date: Double,
+        report: Report?
     ) {
         self.id = id
         self.title = title
@@ -53,6 +57,17 @@ struct Post: Codable, Equatable, DictionaryCodable {
         self.gifContentUrl = gifContentUrl
         self.user = user
         self.date = date
+        self.report = report
+    }
+}
+
+struct Report: Codable, Equatable, DictionaryCodable {
+    let reportCategory: String
+    let reportUser: String
+    
+    init(reportCategory: String, reportUser: String) {
+        self.reportCategory = reportCategory
+        self.reportUser = reportUser
     }
 }
 
@@ -66,7 +81,8 @@ extension Post {
             gifPreviewUrl: self.gifPreviewUrl,
             gifContentUrl: self.gifContentUrl,
             user: self.user,
-            date: self.date
+            date: self.date,
+            report: self.report
         )
         return newPost
     }
