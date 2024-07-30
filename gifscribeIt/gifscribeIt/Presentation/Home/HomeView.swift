@@ -11,18 +11,21 @@ import ComposableArchitecture
 
 @ViewAction(for: HomeFeature.self)
 struct HomeView: View {
-    @Bindable var store: StoreOf<HomeFeature>
+    @Perception.Bindable var store: StoreOf<HomeFeature>
     
     var body: some View {
-        HomeViewBody
-        .onAppear {
-            send(.onAppear)
+        WithPerceptionTracking {
+            HomeViewBody
+                .onAppear {
+                    send(.onAppear)
+                }
         }
     }
 }
 
 extension HomeView {
     private var HomeViewBody: some View {
+        
         VStack {
             HStack {
                 Text("\(store.points)")
@@ -55,7 +58,7 @@ extension HomeView {
                                 Text("\(post.title)")
                                     .font(.custom("TrebuchetMS-Bold", size: 20))
                                 HStack(spacing: 20) {
-                                    GifView(url: post.gifPreviewUrl, attributionScale: 0.5)
+                                    GifImageView(url: post.gifPreviewUrl, attributionScale: 0.5)
                                         .frame(height: 200)
                                     VStack(spacing: 10) {
                                         Button(
@@ -86,7 +89,7 @@ extension HomeView {
                             }
                             Button(
                                 action: {
-                                    send(.reportPostTapped)
+                                    send(.reportPostTapped(post.id))
                                 },
                                 label: {
                                     Image(systemName: "exclamationmark")
