@@ -11,6 +11,7 @@ import ComposableArchitecture
 @ViewAction(for: SignUpFeature.self)
 struct SignUpView: View {
     @Perception.Bindable var store: StoreOf<SignUpFeature>
+    @State private var htmlAttributedString: AttributedString?
     
     var body: some View {
         WithPerceptionTracking {
@@ -85,6 +86,38 @@ extension SignUpView {
                     }
                 }
                 .underlined(color: .purple)
+                HStack {
+                    Toggle(isOn: $store.isAgreeTerms) {
+                        Text("Terms of use")
+                    }
+                    .toggleStyle(ToggleCheckBoxStyle())
+                    Spacer()
+                    Button(
+                        action: {
+                            send(.showTermsSheetTapped)
+                        },
+                        label: {
+                            Text("Show")
+                        }
+                    )
+                }
+                .padding(.horizontal, 20)
+                HStack {
+                    Toggle(isOn: $store.isAgreePrivacyPolicy) {
+                        Text("Privacy Policy")
+                    }
+                    .toggleStyle(ToggleCheckBoxStyle())
+                    Spacer()
+                    Button(
+                        action: {
+                            send(.showPrivacyPolicyTapped)
+                        },
+                        label: {
+                            Text("Show")
+                        }
+                    )
+                }
+                .padding(.horizontal, 20)
                 Button(
                     action: {
                         send(.signUpButtonTapped)
@@ -102,6 +135,80 @@ extension SignUpView {
             }
             .padding(.horizontal, 20)
         }
+        .sheet(isPresented: $store.isTermsSheetPresented) {
+            TermsofUseView
+            .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $store.isPrivacyPolicySheetPresented) {
+            PrivacyPolicyView
+            .presentationDragIndicator(.visible)
+        }
         .loading(isLoading: store.isLoading)
+    }
+}
+
+extension SignUpView {
+    private var TermsofUseView: some View {
+        VStack(spacing: 20) {
+            Text("Terms of use")
+                .font(.system(size: 40))
+            ScrollView {
+                Text(htmlAttributedString ?? AttributedString(stringLiteral: ""))
+            }
+            .onAppear {
+                DispatchQueue.main.async {
+                    let attributedString = Agreements.termsOfUse.htmlString.attributedString()
+                    htmlAttributedString = attributedString
+                }
+            }
+            Button(
+                action: {
+                    send(.agreeTermsButtonTapped)
+                }, label: {
+                    Text("Agree")
+                        .font(.system(size: 20))
+                        .padding(.vertical, 16)
+                        .padding(.horizontal, 40)
+                        .background(.blue)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                }
+            )
+            
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 40)
+    }
+    
+    private var PrivacyPolicyView: some View {
+        VStack(spacing: 20) {
+            Text("Privacy Policy")
+                .font(.system(size: 40))
+            ScrollView {
+                Text(htmlAttributedString ?? AttributedString(stringLiteral: ""))
+            }
+            .onAppear {
+                DispatchQueue.main.async {
+                    let attributedString = Agreements.privacyPolicy.htmlString.attributedString()
+                    htmlAttributedString = attributedString
+                }
+            }
+            Button(
+                action: {
+                    send(.agreePrivacyPolicyButtonTapped)
+                }, label: {
+                    Text("Agree")
+                        .font(.system(size: 20))
+                        .padding(.vertical, 16)
+                        .padding(.horizontal, 40)
+                        .background(.blue)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                }
+            )
+            
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 40)
     }
 }
