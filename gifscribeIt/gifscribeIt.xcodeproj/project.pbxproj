@@ -54,6 +54,9 @@
 		EB2654682C51E933003B89D4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2654672C51E933003B89D4 /* Post.swift */; };
 		EB26546A2C51EE73003B89D4 /* PostError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2654692C51EE73003B89D4 /* PostError.swift */; };
 		EB26546F2C520A99003B89D4 /* DictionaryCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26546E2C520A99003B89D4 /* DictionaryCodable.swift */; };
+		EBFCBDC52C5B13DB00407BB1 /* ToggleCheckBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFCBDC42C5B13DB00407BB1 /* ToggleCheckBoxStyle.swift */; };
+		EBFCBDC82C5B1B9B00407BB1 /* Agreements.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFCBDC72C5B1B9B00407BB1 /* Agreements.swift */; };
+		EBFCBDCB2C5B22C000407BB1 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFCBDCA2C5B22C000407BB1 /* String+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +99,9 @@
 		EB2654672C51E933003B89D4 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		EB2654692C51EE73003B89D4 /* PostError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostError.swift; sourceTree = "<group>"; };
 		EB26546E2C520A99003B89D4 /* DictionaryCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCodable.swift; sourceTree = "<group>"; };
+		EBFCBDC42C5B13DB00407BB1 /* ToggleCheckBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCheckBoxStyle.swift; sourceTree = "<group>"; };
+		EBFCBDC72C5B1B9B00407BB1 /* Agreements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agreements.swift; sourceTree = "<group>"; };
+		EBFCBDCA2C5B22C000407BB1 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 		196EA0432C4D2F7200DD25DC /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				EBFCBDC62C5B1B8500407BB1 /* Constants */,
 				196EA0442C4D2F8100DD25DC /* SignUpView.swift */,
 				196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */,
 			);
@@ -220,6 +227,7 @@
 		EB2653972C48AE03003B89D4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				EBFCBDC92C5B22B800407BB1 /* Extension */,
 				EB26546B2C52086C003B89D4 /* Converter */,
 			);
 			path = Util;
@@ -232,6 +240,7 @@
 				1963B9A72C52CEFB00EE3978 /* View+.swift */,
 				1963B9AE2C56B96400EE3978 /* LoadingView.swift */,
 				1963B9B02C56BA6E00EE3978 /* LoadingWindow.swift */,
+				EBFCBDC42C5B13DB00407BB1 /* ToggleCheckBoxStyle.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -379,6 +388,22 @@
 			path = Converter;
 			sourceTree = "<group>";
 		};
+		EBFCBDC62C5B1B8500407BB1 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				EBFCBDC72C5B1B9B00407BB1 /* Agreements.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		EBFCBDC92C5B22B800407BB1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EBFCBDCA2C5B22C000407BB1 /* String+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -476,9 +501,11 @@
 				1963B99E2C51507100EE3978 /* AddPostFeature.swift in Sources */,
 				EB2653A62C48E4A1003B89D4 /* MainFeature.swift in Sources */,
 				EB2653A22C48E3D5003B89D4 /* SignInFeature.swift in Sources */,
+				EBFCBDC82C5B1B9B00407BB1 /* Agreements.swift in Sources */,
 				EB26546F2C520A99003B89D4 /* DictionaryCodable.swift in Sources */,
 				EB2653DE2C50E309003B89D4 /* SettingFeature.swift in Sources */,
 				EB2653BE2C4F3974003B89D4 /* AuthClient.swift in Sources */,
+				EBFCBDC52C5B13DB00407BB1 /* ToggleCheckBoxStyle.swift in Sources */,
 				EB2653AD2C4E3BD6003B89D4 /* FindView.swift in Sources */,
 				EB2653DA2C50E2FA003B89D4 /* HomeFeature.swift in Sources */,
 				EB2653C92C4F7517003B89D4 /* SearchGifEntity.swift in Sources */,
@@ -489,6 +516,7 @@
 				EB2653D82C50E2F3003B89D4 /* HomeView.swift in Sources */,
 				EB2654682C51E933003B89D4 /* Post.swift in Sources */,
 				1963B9AF2C56B96400EE3978 /* LoadingView.swift in Sources */,
+				EBFCBDCB2C5B22C000407BB1 /* String+.swift in Sources */,
 				1963B9A82C52CEFB00EE3978 /* View+.swift in Sources */,
 				1963B9A02C51534A00EE3978 /* PostDetailView.swift in Sources */,
 				EB2653A02C48E3C7003B89D4 /* SignInView.swift in Sources */,
@@ -634,7 +662,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"gifscribeIt/Preview Content\"";
 				DEVELOPMENT_TEAM = 6973WVKMZ8;
 				ENABLE_PREVIEWS = YES;
@@ -671,7 +699,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"gifscribeIt/Preview Content\"";
 				DEVELOPMENT_TEAM = 6973WVKMZ8;
 				ENABLE_PREVIEWS = YES;

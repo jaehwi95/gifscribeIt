@@ -20,11 +20,16 @@ struct SignUpFeature {
         var password: String = ""
         var confirmPassword: String = ""
         var isSignUpPossible: Bool {
-            !password.isEmpty && (password == confirmPassword)
+            !password.isEmpty && (password == confirmPassword) && isAgreeTerms && isAgreePrivacyPolicy
         }
         var isLoading: Bool = false
         var isShowPassword: Bool = false
         var isShowConfirmPassword: Bool = false
+        
+        var isAgreeTerms: Bool = false
+        var isAgreePrivacyPolicy: Bool = false
+        var isTermsSheetPresented: Bool = false
+        var isPrivacyPolicySheetPresented: Bool = false
     }
     
     enum Action: ViewAction, Equatable {
@@ -33,6 +38,8 @@ struct SignUpFeature {
         case signUpFail(String)
         case signUpSuccess(String)
         case logoutFail(String)
+        case setTermsSheet(Bool)
+        case setPrivacyPolicySheet(Bool)
         
         enum Alert: Equatable {
             case navigateToSignIn
@@ -44,6 +51,10 @@ struct SignUpFeature {
             case signUpButtonTapped
             case toggleShowPasswordButtonTapped
             case toggleShowConfirmPasswordButtonTapped
+            case showTermsSheetTapped
+            case showPrivacyPolicyTapped
+            case agreeTermsButtonTapped
+            case agreePrivacyPolicyButtonTapped
         }
     }
     
@@ -71,6 +82,12 @@ struct SignUpFeature {
                     TextState("\(errorMessage)")
                 }
                 return .none
+            case .setTermsSheet(let isPresented):
+                state.isTermsSheetPresented = isPresented
+                return .none
+            case .setPrivacyPolicySheet(let isPresented):
+                state.isPrivacyPolicySheetPresented = isPresented
+                return .none
             case .view(.signUpButtonTapped):
                 let isAllTextFieldsFilled = [state.email, state.password, state.confirmPassword].allSatisfy { !$0.isEmpty }
                 if isAllTextFieldsFilled {
@@ -88,6 +105,16 @@ struct SignUpFeature {
             case .view(.toggleShowConfirmPasswordButtonTapped):
                 state.isShowConfirmPassword.toggle()
                 return .none
+            case .view(.showTermsSheetTapped):
+                return .send(.setTermsSheet(true))
+            case .view(.showPrivacyPolicyTapped):
+                return .send(.setPrivacyPolicySheet(true))
+            case .view(.agreeTermsButtonTapped):
+                state.isAgreeTerms = true
+                return .send(.setTermsSheet(false))
+            case .view(.agreePrivacyPolicyButtonTapped):
+                state.isAgreePrivacyPolicy = true
+                return .send(.setPrivacyPolicySheet(false))
             case .view(.binding):
                 return .none
             case .alert:
