@@ -17,7 +17,7 @@ struct SettingView: View {
         WithPerceptionTracking {
             VStack {
                 List {
-                    Section(header: Text("User Information")) {
+                    Section(header: Text("User Information").foregroundStyle(Color.black)) {
                         HStack {
                             Text("User Email")
                             Spacer()

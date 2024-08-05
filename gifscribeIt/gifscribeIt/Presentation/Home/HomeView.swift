@@ -25,7 +25,6 @@ struct HomeView: View {
 
 extension HomeView {
     private var HomeViewBody: some View {
-        
         VStack {
             HStack {
                 Text("\(store.points)")

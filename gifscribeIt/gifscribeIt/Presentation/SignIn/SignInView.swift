@@ -24,7 +24,7 @@ extension SignInView {
         WithPerceptionTracking {
             ZStack {
                 LinearGradient(
-                    gradient: Gradient(colors: [.cyan, .mint]),
+                    gradient: Gradient(colors: [.cyan, .clear]),
                     startPoint: .topTrailing,
                     endPoint: .bottomTrailing
                 )
