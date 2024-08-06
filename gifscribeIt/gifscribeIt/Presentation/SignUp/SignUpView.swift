@@ -25,7 +25,7 @@ extension SignUpView {
     private var SignUpViewBody: some View {
         ZStack {
             LinearGradient(
-                gradient: Gradient(colors: [.yellow, .mint]),
+                gradient: Gradient(colors: [.yellow, .clear]),
                 startPoint: .topTrailing,
                 endPoint: .bottomTrailing
             )
