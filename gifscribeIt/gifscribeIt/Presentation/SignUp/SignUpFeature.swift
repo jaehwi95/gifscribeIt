@@ -26,6 +26,15 @@ struct SignUpFeature {
         var isShowPassword: Bool = false
         var isShowConfirmPassword: Bool = false
         
+        var isAgreeAll: Bool {
+            get { 
+                isAgreeTerms && isAgreePrivacyPolicy
+            }
+            set {
+                isAgreeTerms = newValue
+                isAgreePrivacyPolicy = newValue
+            }
+        }
         var isAgreeTerms: Bool = false
         var isAgreePrivacyPolicy: Bool = false
         var isTermsSheetPresented: Bool = false
@@ -53,8 +62,11 @@ struct SignUpFeature {
             case toggleShowConfirmPasswordButtonTapped
             case showTermsSheetTapped
             case showPrivacyPolicyTapped
-            case agreeTermsButtonTapped
-            case agreePrivacyPolicyButtonTapped
+            case agreeTermsSheetButtonTapped
+            case agreePrivacyPolicySheetButtonTapped
+            case agreeAllTapped
+            case agreeTermsTapped
+            case agreePrivacyPolicyTapped
         }
     }
     
@@ -109,12 +121,21 @@ struct SignUpFeature {
                 return .send(.setTermsSheet(true))
             case .view(.showPrivacyPolicyTapped):
                 return .send(.setPrivacyPolicySheet(true))
-            case .view(.agreeTermsButtonTapped):
+            case .view(.agreeTermsSheetButtonTapped):
                 state.isAgreeTerms = true
                 return .send(.setTermsSheet(false))
-            case .view(.agreePrivacyPolicyButtonTapped):
+            case .view(.agreePrivacyPolicySheetButtonTapped):
                 state.isAgreePrivacyPolicy = true
                 return .send(.setPrivacyPolicySheet(false))
+            case .view(.agreeAllTapped):
+                state.isAgreeAll.toggle()
+                return .none
+            case .view(.agreeTermsTapped):
+                state.isAgreeTerms.toggle()
+                return .none
+            case .view(.agreePrivacyPolicyTapped):
+                state.isAgreePrivacyPolicy.toggle()
+                return .none
             case .view(.binding):
                 return .none
             case .alert:

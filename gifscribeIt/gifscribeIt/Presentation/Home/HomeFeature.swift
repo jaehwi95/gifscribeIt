@@ -43,7 +43,7 @@ struct HomeFeature {
             case createPostButtonTapped
             case addPointToPost(String?)
             case minusPointToPost(String?)
-            case reportPostTapped(String?)
+            case reportPostTapped(String?, String?)
         }
     }
     
@@ -52,14 +52,16 @@ struct HomeFeature {
         Reduce { state, action in
             switch action {
             case .setPostsList(let posts):
+                let sortedPosts: [Post]
                 switch state.selectedCategory {
                 case .hot:
-                    state.posts = sortPostsByPointsDecreasing(posts: posts)
+                    sortedPosts = sortPostsByPointsDecreasing(posts: posts)
                 case .new:
-                    state.posts = sortPostsByDate(posts: posts)
+                    sortedPosts = sortPostsByDate(posts: posts)
                 case .debated:
-                    state.posts = sortPostsByPointsIncreasing(posts: posts)
+                    sortedPosts = sortPostsByPointsIncreasing(posts: posts)
                 }
+                state.posts = filterReportPosts(posts: sortedPosts)
                 return .none
             case .getAllPostsFail:
                 return .none
@@ -70,13 +72,12 @@ struct HomeFeature {
             case .reportPostFail:
                 return .none
             case .reportPostSuccess:
-                return .none
+                return .send(.view(.onAppear))
             case .view(.onAppear):
                 return .run { send in
                     await send(self.getAllPosts())
                 }
             case .view(.createPostButtonTapped):
-                print("add post")
                 return .none
             case .view(.addPointToPost(let id)):
                 return .run { send in
@@ -86,7 +87,7 @@ struct HomeFeature {
                 return .run { send in
                     await send(self.minusPoint(id: id))
                 }
-            case .view(.reportPostTapped(let id)):
+            case .view(.reportPostTapped(_, let id)):
                 state.alert = AlertState(
                     title: TextState("Report Post?"),
                     message: TextState("If you report the post, we will take an appropriate action after a thorough review in 24 hours."),
@@ -187,6 +188,13 @@ extension HomeFeature {
     private func sortPostsByPointsIncreasing(posts: [Post]) -> [Post] {
         let sortedList = posts.sorted(by: { $0.point < $1.point })
         return sortedList
+    }
+    
+    private func filterReportPosts(posts: [Post]) -> [Post] {
+        let filteredList = posts.filter { post in
+            Auth.auth().currentUser?.email != post.report?.reportUser
+        }
+        return filteredList
     }
 }
 
