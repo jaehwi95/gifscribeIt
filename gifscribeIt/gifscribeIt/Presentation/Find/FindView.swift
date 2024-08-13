@@ -17,7 +17,7 @@ struct FindView: View {
         WithPerceptionTracking {
             ZStack {
                 LinearGradient(
-                    gradient: Gradient(colors: [.yellow, .mint]),
+                    gradient: Gradient(colors: [.yellow, .clear]),
                     startPoint: .topTrailing,
                     endPoint: .bottomTrailing
                 )

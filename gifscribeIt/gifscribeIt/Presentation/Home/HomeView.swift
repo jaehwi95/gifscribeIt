@@ -82,13 +82,18 @@ extension HomeView {
                                         
                                     }
                                 }
+//                                HStack {
+//                                    Spacer()
+//                                    Text("\(post.user)")
+//                                        .font(.system(size: 12))
+//                                }
                                 if post.id != store.posts.last?.id {
                                     Divider()
                                 }
                             }
                             Button(
                                 action: {
-                                    send(.reportPostTapped(post.id))
+                                    send(.reportPostTapped(post.user, post.id))
                                 },
                                 label: {
                                     Image(systemName: "exclamationmark")
@@ -101,33 +106,6 @@ extension HomeView {
                 }
                 .padding(.horizontal, 20)
             }
-            /// TODO: Toolbar 안보이는 이슈 해결
-            /*
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Text("\(store.points)")
-                }
-                ToolbarItemGroup(placement: .principal) {
-                    Picker("Categories", selection: $store.selectedCategory) {
-                        ForEach(Category.allCases) { category in
-                            Text(category.rawValue.capitalized)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal, 40)
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(
-                        action: {
-                            send(.createPostButtonTapped)
-                        },
-                        label: {
-                            Image(systemName: "square.and.pencil")
-                        }
-                    )
-                }
-            }
-             */
         }
         .background(.mint.opacity(0.5))
         .alert($store.scope(state: \.alert, action: \.alert))
