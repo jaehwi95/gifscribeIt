@@ -26,7 +26,7 @@ struct Post: Codable, Equatable, DictionaryCodable {
         gifContentUrl: String,
         user: String,
         date: Double,
-        report: Report?
+        report: Report? = nil
     ) {
         self.title = title
         self.content = content
