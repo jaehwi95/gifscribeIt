@@ -29,6 +29,13 @@ struct MainView: View {
                 .tabItem {
                     Image(systemName: "gearshape")
                 }
+                PayView(
+                    store: store.scope(state: \.pay, action: \.pay)
+                )
+                .tag(MainFeature.Tab.pay)
+                .tabItem {
+                    Image(systemName: "dollarsign")
+                }
             }
             .navigationBarBackButtonHidden(true)
         }

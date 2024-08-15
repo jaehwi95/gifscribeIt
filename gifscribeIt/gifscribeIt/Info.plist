@@ -4,6 +4,10 @@
 <dict>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<string>NO</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>kakaotalk</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

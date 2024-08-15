@@ -54,6 +54,14 @@
 		EB2654682C51E933003B89D4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2654672C51E933003B89D4 /* Post.swift */; };
 		EB26546A2C51EE73003B89D4 /* PostError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2654692C51EE73003B89D4 /* PostError.swift */; };
 		EB26546F2C520A99003B89D4 /* DictionaryCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26546E2C520A99003B89D4 /* DictionaryCodable.swift */; };
+		EBE7A7752C648B1600873C3A /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7A7742C648B1600873C3A /* PayView.swift */; };
+		EBE7A7772C648B1E00873C3A /* PayFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7A7762C648B1E00873C3A /* PayFeature.swift */; };
+		EBE7A77A2C649D1900873C3A /* PayEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7A7792C649D1900873C3A /* PayEntity.swift */; };
+		EBE7A77C2C649D2200873C3A /* PayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7A77B2C649D2200873C3A /* PayModel.swift */; };
+		EBE7A77E2C649D2B00873C3A /* PayProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7A77D2C649D2B00873C3A /* PayProvider.swift */; };
+		EBE7A7802C649D3400873C3A /* PayAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7A77F2C649D3400873C3A /* PayAPI.swift */; };
+		EBE7A7822C649D3D00873C3A /* PayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7A7812C649D3D00873C3A /* PayClient.swift */; };
+		EBE7A7842C649D4400873C3A /* PayError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7A7832C649D4400873C3A /* PayError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +104,14 @@
 		EB2654672C51E933003B89D4 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		EB2654692C51EE73003B89D4 /* PostError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostError.swift; sourceTree = "<group>"; };
 		EB26546E2C520A99003B89D4 /* DictionaryCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCodable.swift; sourceTree = "<group>"; };
+		EBE7A7742C648B1600873C3A /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
+		EBE7A7762C648B1E00873C3A /* PayFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayFeature.swift; sourceTree = "<group>"; };
+		EBE7A7792C649D1900873C3A /* PayEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayEntity.swift; sourceTree = "<group>"; };
+		EBE7A77B2C649D2200873C3A /* PayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayModel.swift; sourceTree = "<group>"; };
+		EBE7A77D2C649D2B00873C3A /* PayProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayProvider.swift; sourceTree = "<group>"; };
+		EBE7A77F2C649D3400873C3A /* PayAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayAPI.swift; sourceTree = "<group>"; };
+		EBE7A7812C649D3D00873C3A /* PayClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayClient.swift; sourceTree = "<group>"; };
+		EBE7A7832C649D4400873C3A /* PayError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +211,7 @@
 		EB2653932C48ADAE003B89D4 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EBE7A7782C649D0200873C3A /* Pay */,
 				EB2654632C51E7E7003B89D4 /* Post */,
 				EB2653BC2C4F3969003B89D4 /* Auth */,
 				EB2653B02C4E5408003B89D4 /* Giphy */,
@@ -205,6 +222,7 @@
 		EB2653952C48ADB6003B89D4 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				EBE7A7732C648B0500873C3A /* Pay */,
 				1963B99A2C514FD500EE3978 /* PostDetail */,
 				1963B9992C514FB600EE3978 /* AddPost */,
 				EB2653D52C50E25F003B89D4 /* Home */,
@@ -379,6 +397,29 @@
 			path = Converter;
 			sourceTree = "<group>";
 		};
+		EBE7A7732C648B0500873C3A /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				EBE7A7742C648B1600873C3A /* PayView.swift */,
+				EBE7A7762C648B1E00873C3A /* PayFeature.swift */,
+			);
+			path = Pay;
+			sourceTree = "<group>";
+		};
+		EBE7A7782C649D0200873C3A /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				EBE7A7792C649D1900873C3A /* PayEntity.swift */,
+				EBE7A77B2C649D2200873C3A /* PayModel.swift */,
+				EBE7A77D2C649D2B00873C3A /* PayProvider.swift */,
+				EBE7A77F2C649D3400873C3A /* PayAPI.swift */,
+				EBE7A7812C649D3D00873C3A /* PayClient.swift */,
+				EBE7A7832C649D4400873C3A /* PayError.swift */,
+			);
+			name = Pay;
+			path = "ㅖ묘";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -471,6 +512,7 @@
 				196EA0472C4D2F8700DD25DC /* SignUpFeature.swift in Sources */,
 				1963B9982C514A9A00EE3978 /* GifImage.swift in Sources */,
 				EB26539A2C48B4DC003B89D4 /* RootFeature.swift in Sources */,
+				EBE7A7842C649D4400873C3A /* PayError.swift in Sources */,
 				EB2653A42C48E499003B89D4 /* MainView.swift in Sources */,
 				EB2653AF2C4E3BE6003B89D4 /* FindFeature.swift in Sources */,
 				1963B99E2C51507100EE3978 /* AddPostFeature.swift in Sources */,
@@ -487,19 +529,26 @@
 				196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */,
 				EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */,
 				EB2653D82C50E2F3003B89D4 /* HomeView.swift in Sources */,
+				EBE7A77C2C649D2200873C3A /* PayModel.swift in Sources */,
 				EB2654682C51E933003B89D4 /* Post.swift in Sources */,
 				1963B9AF2C56B96400EE3978 /* LoadingView.swift in Sources */,
 				1963B9A82C52CEFB00EE3978 /* View+.swift in Sources */,
+				EBE7A7802C649D3400873C3A /* PayAPI.swift in Sources */,
 				1963B9A02C51534A00EE3978 /* PostDetailView.swift in Sources */,
 				EB2653A02C48E3C7003B89D4 /* SignInView.swift in Sources */,
 				EB2654652C51E7F4003B89D4 /* PostClient.swift in Sources */,
 				EB2653922C48AAAF003B89D4 /* RootView.swift in Sources */,
+				EBE7A7822C649D3D00873C3A /* PayClient.swift in Sources */,
 				1963B99C2C51506A00EE3978 /* AddPostView.swift in Sources */,
 				EB26546A2C51EE73003B89D4 /* PostError.swift in Sources */,
+				EBE7A77A2C649D1900873C3A /* PayEntity.swift in Sources */,
 				EB2653D42C50B6AF003B89D4 /* AuthError.swift in Sources */,
 				EB2653B22C4E54AB003B89D4 /* GiphyProvider.swift in Sources */,
+				EBE7A77E2C649D2B00873C3A /* PayProvider.swift in Sources */,
 				EB2653C22C4F3C9B003B89D4 /* GiphyAPI.swift in Sources */,
 				1963B9B12C56BA6E00EE3978 /* LoadingWindow.swift in Sources */,
+				EBE7A7752C648B1600873C3A /* PayView.swift in Sources */,
+				EBE7A7772C648B1E00873C3A /* PayFeature.swift in Sources */,
 				EB2653CD2C4F886F003B89D4 /* SearchResult.swift in Sources */,
 				EB2653DC2C50E302003B89D4 /* SettingView.swift in Sources */,
 			);

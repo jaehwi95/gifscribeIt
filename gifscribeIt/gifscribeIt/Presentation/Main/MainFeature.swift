@@ -11,18 +11,20 @@ import FirebaseAuth
 
 @Reducer
 struct MainFeature {
-    enum Tab { case home, setting }
+    enum Tab { case home, setting, pay }
     
     @ObservableState
     struct State: Equatable {
         var currentTab: Tab = .home
         var home = HomeFeature.State()
         var setting = SettingFeature.State()
+        var pay = PayFeature.State()
     }
     
     enum Action: Equatable {
         case home(HomeFeature.Action)
         case setting(SettingFeature.Action)
+        case pay(PayFeature.Action)
         case selectTab(Tab)
     }
     
@@ -33,9 +35,12 @@ struct MainFeature {
         Scope(state: \.setting, action: \.setting) {
             SettingFeature()
         }
+        Scope(state: \.pay, action: \.pay) {
+            PayFeature()
+        }
         Reduce { state, action in
             switch action {
-            case .home, .setting:
+            case .home, .setting, .pay:
                 return .none
             case .selectTab(let tab):
                 state.currentTab = tab
