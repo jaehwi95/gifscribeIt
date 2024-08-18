@@ -11,5 +11,14 @@
 		<key>UISceneConfigurations</key>
 		<dict/>
 	</dict>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>mint</string>
+		<key>UIImageName</key>
+		<string>gifscribeItLogo</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

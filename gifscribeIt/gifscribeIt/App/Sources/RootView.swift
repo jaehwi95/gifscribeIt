@@ -18,12 +18,8 @@ struct RootView: View {
                 path: $store.scope(state: \.path, action: \.path),
                 root: {
                     ZStack {
-                        LinearGradient(
-                            gradient: Gradient(colors: [.cyan, .mint]),
-                            startPoint: .topTrailing,
-                            endPoint: .bottomTrailing
-                        )
-                        .ignoresSafeArea()
+                        Color.mint
+                            .ignoresSafeArea()
                         VStack(spacing: 20) {
                             Text("GifscribeIt")
                                 .font(.custom("Noteworthy-Bold", size: 60))

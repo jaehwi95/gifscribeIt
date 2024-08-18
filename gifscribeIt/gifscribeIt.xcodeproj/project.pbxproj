@@ -19,6 +19,7 @@
 		1963B9B12C56BA6E00EE3978 /* LoadingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B9B02C56BA6E00EE3978 /* LoadingWindow.swift */; };
 		196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0442C4D2F8100DD25DC /* SignUpView.swift */; };
 		196EA0472C4D2F8700DD25DC /* SignUpFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */; };
+		19CF55C62C6E9D3400FBC519 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19CF55C52C6E9D3400FBC519 /* Colors.xcassets */; };
 		EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26537F2C48987C003B89D4 /* gifscribeItApp.swift */; };
 		EB2653842C48987E003B89D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB2653832C48987E003B89D4 /* Assets.xcassets */; };
 		EB2653872C48987E003B89D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB2653862C48987E003B89D4 /* Preview Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		1963B9B02C56BA6E00EE3978 /* LoadingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingWindow.swift; sourceTree = "<group>"; };
 		196EA0442C4D2F8100DD25DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFeature.swift; sourceTree = "<group>"; };
+		19CF55C52C6E9D3400FBC519 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EB26537C2C48987C003B89D4 /* gifscribeIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gifscribeIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB26537F2C48987C003B89D4 /* gifscribeItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gifscribeItApp.swift; sourceTree = "<group>"; };
 		EB2653832C48987E003B89D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			children = (
 				1963B9AC2C56B6FB00EE3978 /* GoogleService-Info.plist */,
 				EB2653832C48987E003B89D4 /* Assets.xcassets */,
+				19CF55C52C6E9D3400FBC519 /* Colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB2653872C48987E003B89D4 /* Preview Assets.xcassets in Resources */,
+				19CF55C62C6E9D3400FBC519 /* Colors.xcassets in Resources */,
 				EB2653842C48987E003B89D4 /* Assets.xcassets in Resources */,
 				1963B9AD2C56B6FC00EE3978 /* GoogleService-Info.plist in Resources */,
 			);
@@ -671,7 +675,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = GifscribeIt;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -708,7 +711,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = GifscribeIt;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;

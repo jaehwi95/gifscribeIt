@@ -13,7 +13,8 @@ import FirebaseAuth
 struct RootFeature {
     @ObservableState
     struct State: Equatable {
-        var path = StackState<Path.State>()
+        var path: StackState = StackState<Path.State>()
+        var pathStack: [String] = []
     }
     
     @Reducer(state: .equatable, action: .equatable)
@@ -29,11 +30,17 @@ struct RootFeature {
     enum Action: Equatable, ViewAction {
         case path(StackActionOf<Path>)
         case view(View)
+        case printPath
         
         @CasePathable
         enum View: Equatable {
             case getStartedButtonTapped
         }
+    }
+    
+    private func push(_ state: inout State, pathState: RootFeature.Path.State) {
+        state.path.append(pathState)
+//        state.pathStack.append(pathState.v alue)
     }
     
     var body: some ReducerOf<Self> {
@@ -45,37 +52,40 @@ struct RootFeature {
                 } else {
                     state.path.append(.signIn(SignInFeature.State()))
                 }
-                return .none
+                return .send(.printPath)
             case .path(.element(_, .signIn(.view(.createAccountTapped)))):
                 state.path.append(.signUp(SignUpFeature.State()))
-                return .none
+                return .send(.printPath)
             case .path(.element(_, .signIn(.loginSuccess))):
                 state.path.append(.main(MainFeature.State()))
-                return .none
+                return .send(.printPath)
             case .path(.element(_, .signIn(.view(.forgotPasswordTapped)))):
                 state.path.append(.find(FindFeature.State()))
-                return .none
+                return .send(.printPath)
             case .path(.element(_, .signUp(.alert(.presented(.navigateToSignIn))))):
                 state.path.removeLast()
-                return .none
+                return .send(.printPath)
             case .path(.element(_, .main(.home(.view(.createPostButtonTapped))))):
                 state.path.append(.addPost(AddPostFeature.State()))
-                return .none
+                return .send(.printPath)
             case .path(.element(_, .main(.setting(.logoutSuccess)))):
                 state.path.removeAll()
                 state.path.append(.signIn(SignInFeature.State()))
-                return .none
+                return .send(.printPath)
             case .path(.element(_, .main(.setting(.deleteAccountSuccess)))):
                 state.path.removeAll()
                 state.path.append(.signIn(SignInFeature.State()))
-                return .none
+                return .send(.printPath)
             case .path(.element(_, .addPost(.view(.goBackButtonTapped)))):
                 state.path.removeLast()
-                return .none
+                return .send(.printPath)
             case .path(.element(_, .addPost(.addPostSuccess))):
                 state.path.removeLast()
-                return .none
+                return .send(.printPath)
             case .path:
+                return .send(.printPath)
+            case .printPath:
+                print("NavigationStack: \(state.path)")
                 return .none
             }
         }
