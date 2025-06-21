@@ -12,7 +12,7 @@ You can simply create a new account with just email and password.
 
 - SwiftUI: Declarative UI implementation
 - Swift Concurrency: Asynchronous network requests and data handling using async/await
-- [Moya (https://github.com/Moya/Moya)]: Network abstraction layer
+- [Moya](https://github.com/Moya/Moya): Network abstraction layer
 - [TCA (The Composable Architecture)](https://github.com/pointfreeco/swift-composable-architecture): Unidirectional state management, feature modularization, and dependency injection
 - [Firebase](https://github.com/firebase): Realtime Database, Authentication, Storage, Remote Config
 
