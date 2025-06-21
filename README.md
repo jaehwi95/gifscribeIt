@@ -16,7 +16,7 @@ You can simply create a new account with just email and password.
 - [TCA (The Composable Architecture)](https://github.com/pointfreeco/swift-composable-architecture): Unidirectional state management, feature modularization, and dependency injection
 - [Firebase](https://github.com/firebase): Realtime Database, Authentication, Storage, Remote Config
 
-## 프로젝트 폴더 구조
+## Project Folder Structure
 
 ```plaintext
 GifscribeIt
