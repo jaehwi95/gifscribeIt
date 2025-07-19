@@ -19,6 +19,7 @@
 		1963B9B12C56BA6E00EE3978 /* LoadingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963B9B02C56BA6E00EE3978 /* LoadingWindow.swift */; };
 		196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0442C4D2F8100DD25DC /* SignUpView.swift */; };
 		196EA0472C4D2F8700DD25DC /* SignUpFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */; };
+		19D8E44E2E2BCAB900C695E4 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D8E44D2E2BCAB900C695E4 /* Bundle+.swift */; };
 		EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26537F2C48987C003B89D4 /* gifscribeItApp.swift */; };
 		EB2653842C48987E003B89D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB2653832C48987E003B89D4 /* Assets.xcassets */; };
 		EB2653872C48987E003B89D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB2653862C48987E003B89D4 /* Preview Assets.xcassets */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		1903A1E22E229FCE00199F9D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1958D01D2E2BCDF40083FFF1 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		1963B9972C514A9A00EE3978 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GifImage.swift; path = gifscribeIt/Presentation/SignUp/GifImage.swift; sourceTree = SOURCE_ROOT; };
 		1963B99B2C51506A00EE3978 /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
 		1963B99D2C51507100EE3978 /* AddPostFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostFeature.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		1963B9B02C56BA6E00EE3978 /* LoadingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingWindow.swift; sourceTree = "<group>"; };
 		196EA0442C4D2F8100DD25DC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		196EA0462C4D2F8700DD25DC /* SignUpFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFeature.swift; sourceTree = "<group>"; };
+		19D8E44D2E2BCAB900C695E4 /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 		EB26537C2C48987C003B89D4 /* gifscribeIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gifscribeIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB26537F2C48987C003B89D4 /* gifscribeItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gifscribeItApp.swift; sourceTree = "<group>"; };
 		EB2653832C48987E003B89D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,6 +127,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1958D01E2E2BCDF40083FFF1 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				1958D01D2E2BCDF40083FFF1 /* Release.xcconfig */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 		1963B9992C514FB600EE3978 /* AddPost */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +166,7 @@
 		EB2653732C48987C003B89D4 = {
 			isa = PBXGroup;
 			children = (
+				1958D01E2E2BCDF40083FFF1 /* Configs */,
 				EB26537E2C48987C003B89D4 /* gifscribeIt */,
 				EB26537D2C48987C003B89D4 /* Products */,
 				EB2653E02C50F22F003B89D4 /* Frameworks */,
@@ -400,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				EBFCBDCA2C5B22C000407BB1 /* String+.swift */,
+				19D8E44D2E2BCAB900C695E4 /* Bundle+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -510,6 +523,7 @@
 				EB2653DA2C50E2FA003B89D4 /* HomeFeature.swift in Sources */,
 				EB2653C92C4F7517003B89D4 /* SearchGifEntity.swift in Sources */,
 				EB2653D22C50B5EC003B89D4 /* GiphyError.swift in Sources */,
+				19D8E44E2E2BCAB900C695E4 /* Bundle+.swift in Sources */,
 				1963B9A22C51535300EE3978 /* PostDetailFeature.swift in Sources */,
 				196EA0452C4D2F8100DD25DC /* SignUpView.swift in Sources */,
 				EB2653802C48987C003B89D4 /* gifscribeItApp.swift in Sources */,
@@ -538,6 +552,7 @@
 /* Begin XCBuildConfiguration section */
 		EB2653882C48987E003B89D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1958D01D2E2BCDF40083FFF1 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -601,6 +616,7 @@
 		};
 		EB2653892C48987E003B89D4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1958D01D2E2BCDF40083FFF1 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -657,6 +673,7 @@
 		};
 		EB26538B2C48987E003B89D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1958D01D2E2BCDF40083FFF1 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -694,6 +711,7 @@
 		};
 		EB26538C2C48987E003B89D4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1958D01D2E2BCDF40083FFF1 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
