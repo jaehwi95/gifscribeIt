@@ -40,7 +40,7 @@ extension GiphyAPI: TargetType {
                     "rating": "g",
                     "lang": "en",
                     "bundle": "messaging_non_clips",
-                    "api_key": ""
+                    "api_key": "\(Bundle.main.apiKey)"
                 ],
                 encoding: URLEncoding.queryString)
         }
